@@ -1,21 +1,5 @@
 #include "calculations.h"
 
-int main() {
-    s21::Calculations calc;
-    std::string str = "1 + (";
-    s21::lexeme reverse_polish[LEN];
-    for (int i = 0; i < LEN; i++) {
-        calc.ClearLexeme(&reverse_polish[i]);
-    }
-    calc.ToReversePolish(str, reverse_polish);
-    // for (int i = 0; i < 3; i++) {
-    //     printf("type=%d\nkind=%d\nnumber=%f\nunary=%d\n\n", reverse_polish[i].type, reverse_polish[i].lexeme_kind, reverse_polish[i].number, reverse_polish[i].unary);
-    // }
-    bool res = calc.isValidReversePolish(reverse_polish);
-    printf("%d\n", res);
-    return 0;
-}
-
 bool s21::Calculations::isValidInputStr(std::string &str_input) {
     bool status = true;
 

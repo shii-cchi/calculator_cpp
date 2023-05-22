@@ -5,6 +5,7 @@
 #include <string>
 #include <stack>
 #include <sstream>
+#include <cmath>
 
 #define LEN 255
 
@@ -35,8 +36,13 @@ namespace s21 {
             bool CheckX(std::string &str_input);
             bool CheckNumbers(std::string &str_input);
             bool CheckBrackets(std::string &str_input);
-
             bool isValidReversePolish(lexeme *reverse_polish);
+
+            bool Calculate(std::string &str_input, double *result);
+            double CalculateReversePolish(lexeme *reverse_polish);
+            double CalculateFunction(double number, char function);
+            double CalculateUnaryOp(double number, char op);
+            double CalculateOp(double number_1, double number_2, char op);
     };
 }
 
