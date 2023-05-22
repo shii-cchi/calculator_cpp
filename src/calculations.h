@@ -29,6 +29,14 @@ namespace s21 {
             int GetPriority(lexeme lex);
             std::string GetSubstr(std::string &str_input, int index_input);
             void ClearLexeme(lexeme *lex);
+
+            bool isValidInputStr(std::string &str_input);
+            bool CheckDot(std::string &str_input);
+            bool CheckX(std::string &str_input);
+            bool CheckNumbers(std::string &str_input);
+            bool CheckBrackets(std::string &str_input);
+
+            bool isValidReversePolish(lexeme *reverse_polish);
     };
 }
 
