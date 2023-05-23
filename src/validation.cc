@@ -14,12 +14,12 @@ bool s21::Calculations::CheckDot(std::string &str_input) {
     bool status = true;
     int count_dot = 0;
 
-    for (int i = 0; i < str_input.length(); i++) {
+    for (int i = 0; i < (int)str_input.length(); i++) {
 
-        if (str_input[i] == ',') {
+        if (str_input[i] == '.') {
             count_dot++;
             
-            if (i == str_input.length() - 1) {
+            if (i == (int)str_input.length() - 1) {
                 if (!isdigit(str_input[i - 1])) {
                     status = false;
                 }
@@ -47,7 +47,7 @@ bool s21::Calculations::CheckX(std::string &str_input) {
     bool status = true;
     int count_x = 0;
 
-    for (int i = 0; i < str_input.length(); i++) {
+    for (int i = 0; i < (int)str_input.length(); i++) {
 
         if (str_input[i] == 'x') {
             count_x++;
@@ -70,7 +70,7 @@ bool s21::Calculations::CheckNumbers(std::string &str_input) {
     int status = true;
     int digit = 0;
 
-    for (int i = 0; i < str_input.length(); i++) {
+    for (int i = 0; i < (int)str_input.length(); i++) {
 
         if (isdigit(str_input[i]) || str_input[i] == 'x') {
             digit++;
@@ -89,7 +89,7 @@ bool s21::Calculations::CheckBrackets(std::string &str_input) {
     int status = true;
     int brackets = 0;
     
-    for (int i = 0; i < str_input.length(); i++) {
+    for (int i = 0; i < (int)str_input.length(); i++) {
 
         if (str_input[i] == '(') {
             brackets++;
@@ -114,7 +114,7 @@ bool s21::Calculations::CheckBrackets(std::string &str_input) {
 
 bool s21::Calculations::isValidReversePolish(lexeme *reverse_polish) {
     int status = true;
-    int index = 0, unary = 0, operators = 0, numbers = 0;
+    int index = 0, operators = 0, numbers = 0;
 
     while (reverse_polish[index].type != UNDEFINED) {
 

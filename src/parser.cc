@@ -5,7 +5,7 @@ void s21::Calculations::ToReversePolish(std::string &str_input, lexeme *reverse_
     lexeme lex;
 
     int index_input = 0, index_output = 0;
-    while (index_input < str_input.length()) {
+    while (index_input < (int)str_input.length()) {
         index_input = DefineLexeme(str_input, &lex, index_input);
 
         if (lex.type == NUMBER) {
@@ -60,7 +60,7 @@ int s21::Calculations::DefineLexeme(std::string &str_input, lexeme *lex, int ind
         lex->lexeme_kind = lex_kind;
 
         std::string signs = "+-";
-        if (signs.find(lex_kind) != -1 && (str_input[index_input] == 'x' || str_input[index_input] == '(' || isdigit(str_input[index_input]))) {
+        if ((int)signs.find(lex_kind) != -1 && (str_input[index_input] == 'x' || str_input[index_input] == '(' || isdigit(str_input[index_input]))) {
             lex->unary = 1;
         }
     } else if ((lex_kind = isFunction(str_input, &index_input))) {
@@ -69,7 +69,8 @@ int s21::Calculations::DefineLexeme(std::string &str_input, lexeme *lex, int ind
     } else if ((lex_kind = isBracket(str_input, &index_input))) {
         lex->type = BRACKET;
         lex->lexeme_kind = lex_kind;
-    } else if ((lex_kind = isNum(str_input, &index_input, &number))) {
+    } else {
+        lex_kind = isNum(str_input, &index_input, &number);
         lex->type = NUMBER;
         lex->lexeme_kind = lex_kind;
         lex->number = number;
@@ -108,7 +109,7 @@ char s21::Calculations::isOperator(std::string &str_input, int *index_input) {
     char status = 0;
 
     std::string operators = "+-*/^";
-    if (operators.find(str_input[*index_input]) != -1) {
+    if ((int)operators.find(str_input[*index_input]) != -1) {
         status = str_input[*index_input];
         *index_input += 1;
     }
@@ -136,6 +137,7 @@ char s21::Calculations::isFunction(std::string &str_input, int *index_input) {
         status = str_input[*index_input] - 32;
         *index_input += 2;
     }
+
     return status;
 }
 
@@ -156,7 +158,7 @@ int s21::Calculations::GetPriority(lexeme lex) {
     if (lex.lexeme_kind == '^') {
         prior = 2;
     }
-    else if (lexeme_prior_3.find(lex.lexeme_kind) != -1) {
+    else if ((int)lexeme_prior_3.find(lex.lexeme_kind) != -1) {
         prior = 3;
     }
     else if (lex.lexeme_kind == '+' || lex.lexeme_kind == '-') {
@@ -174,12 +176,14 @@ int s21::Calculations::GetPriority(lexeme lex) {
 std::string s21::Calculations::GetSubstr(std::string &str_input, int index_input) {
     std::string new_str;
 
-    for (int i = 0; i < str_input.length() - index_input; i++) {
-        if (str_input[index_input + i] == ' ' || str_input[index_input + i] == ')') {
+    for (int i = 0; i < (int)str_input.length() - index_input; i++) {
+        if (str_input[index_input + i] == ' ' || str_input[index_input + i] == '(' || str_input[index_input + i] == ')' || str_input[index_input + i] == '^') {
             break;
         }
         new_str.resize(i + 1, str_input[index_input + i]);
     }
+
+    //std::cout << new_str << std::endl;
     return new_str;
 }
 

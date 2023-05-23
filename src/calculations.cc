@@ -1,18 +1,18 @@
 #include "calculations.h"
 
-int main() {
-    s21::Calculations calc;
-    std::string str = "1 + 2";
-    double res = 0;
-    int status = calc.Calculate(str, &res);
-    printf("%f %d\n", res, status);
-    return 0;
-}
+// int main() {
+//     s21::Calculations calc;
+//     std::string str = "5 + .1";
+//     double res = 0;
+//     int status = calc.Calculate(str, &res);
+//     printf("%f %d\n", res, status);
+//     return 0;
+// }
 
 bool s21::Calculations::Calculate(std::string &str_input, double *result) {
     bool status = false;
 
-    s21::lexeme reverse_polish[LEN];
+    lexeme reverse_polish[LEN];
     for (int i = 0; i < LEN; i++) {
         ClearLexeme(&reverse_polish[i]);
     }
@@ -93,8 +93,6 @@ double s21::Calculations::CalculateFunction(double number, char function) {
         case 'L':
             result = log(number);
             break;
-        default:
-            break;
     }
     return result;
 }
@@ -105,7 +103,6 @@ double s21::Calculations::CalculateUnaryOp(double number, char op) {
             number = -number;
             break;
         case '+':
-        default:
             break;
     }
     return number;
@@ -131,8 +128,6 @@ double s21::Calculations::CalculateOp(double number_1, double number_2, char op)
             break;
         case 'm':
             result = fmod(number_1, number_2);
-            break;
-        default:
             break;
     }
     return result;

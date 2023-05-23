@@ -8,19 +8,24 @@
 #include <cmath>
 
 #define LEN 255
+#define EPS 1e-8
 
 namespace s21 {
-    enum lexeme_type { NUMBER, OPERATOR, FUNCTION, BRACKET, UNDEFINED };
-
-    typedef struct lexemes {
-    enum lexeme_type type;
-    char lexeme_kind;  // mod - m, cos - c, sin - s, tan - t, acos - C, asin - S, atan - T, sqrt - Q, log - l, ln - L
-    double number;
-    int unary;
-    } lexeme;
 
     class Calculations {
         public:
+            enum lexeme_type { NUMBER, OPERATOR, FUNCTION, BRACKET, UNDEFINED };
+
+            typedef struct lexemes {
+                enum lexeme_type type;
+                char lexeme_kind;  // mod - m, cos - c, sin - s, tan - t, acos - C, asin - S, atan - T, sqrt - Q, log - l, ln - L
+                double number;
+                int unary;
+            } lexeme;
+
+            bool Calculate(std::string &str_input, double *result);
+
+        private:
             void ToReversePolish(std::string &str_input, lexeme *reverse_polish);
             int DefineLexeme(std::string &str_input, lexeme *lex, int index_input);
             char isNum(std::string &str_input, int *index_input, double *number);
@@ -38,7 +43,6 @@ namespace s21 {
             bool CheckBrackets(std::string &str_input);
             bool isValidReversePolish(lexeme *reverse_polish);
 
-            bool Calculate(std::string &str_input, double *result);
             double CalculateReversePolish(lexeme *reverse_polish);
             double CalculateFunction(double number, char function);
             double CalculateUnaryOp(double number, char op);
