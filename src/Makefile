@@ -49,3 +49,7 @@ clean:
 .PHONY: style
 style:
 	clang-format -n -style=Google calculations/*.c test/*.c qt/*.cpp headers/*.h
+
+.PHONY: valgrind
+valgrind:
+	valgrind --leak-check=full -q  -s --track-origins=yes ./tests
