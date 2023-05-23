@@ -14,6 +14,9 @@ namespace s21 {
 
     class Calculations {
         public:
+            bool Calculate(std::string &str_input, double *result);
+
+        private:
             enum lexeme_type { NUMBER, OPERATOR, FUNCTION, BRACKET, UNDEFINED };
 
             typedef struct lexemes {
@@ -22,10 +25,7 @@ namespace s21 {
                 double number;
                 int unary;
             } lexeme;
-
-            bool Calculate(std::string &str_input, double *result);
-
-        private:
+            
             void ToReversePolish(std::string &str_input, lexeme *reverse_polish);
             int DefineLexeme(std::string &str_input, lexeme *lex, int index_input);
             char isNum(std::string &str_input, int *index_input, double *number);

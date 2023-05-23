@@ -9,8 +9,8 @@ ifeq ($(shell uname), Linux)
 	OPEN = xdg-open
 endif
 
-SOURCES_1 = calculations.cc parser.cc validation.cc
-OBJECTS_1 = calculations.o parser.o validation.o
+SOURCES_1 = calculations.cc parser.cc validation.cc credit_calculations.cc
+OBJECTS_1 = calculations.o parser.o validation.o credit_calculations.o
 SOURCES_2 = test/test.cc
 OBJECTS_2 = test.o
 
