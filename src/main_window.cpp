@@ -130,20 +130,17 @@ void MainWindow::on_pushButton_equal_clicked() {
     std::string str_data = data.toUtf8().constData();
 
     s21::Calculations calc;
-
-    int status = calc.Calculate(str_data, &result);
-    if (status) {
-      ui->result_window->setText(QString::number(result, 'f', 7));
-    } else {
-      ui->result_window->setText("Ошибка ввода");
-    }
+    int status = calc.Calculate(str_data, &result);  
   } else {
     int status = check_valid_data(data);
-    if (status) {
-      x_window->show();
-    } else {
-      ui->result_window->setText("Ошибка ввода");
-    }
+  }
+
+  if (status && data.indexOf('x') == -1) {
+    ui->result_window->setText(QString::number(result, 'f', 7));
+  } else if (status && data.indexOf('x') != -1) {
+    x_window->show();
+  } else {
+    ui->result_window->setText("Ошибка ввода");
   }
 }
 
@@ -156,6 +153,8 @@ void MainWindow::on_pushButton_graph_clicked() {
     int status = check_valid_data(data);
     if (status) {
       axis_window->show();
+    } else {
+      ui->result_window->setText("Ошибка ввода");
     }
   }
 }
@@ -181,9 +180,6 @@ int MainWindow::check_valid_data(QString data) {
 
   s21::Calculations calc;
   int status = calc.Calculate(str_x, &res);
-  if (!status) {
-    ui->result_window->setText("Ошибка ввода");
-  }
   return status;
 }
 
