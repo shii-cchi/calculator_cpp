@@ -5,7 +5,7 @@ MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent), ui(new Ui::MainWindow) {
   ui->setupUi(this);
   this->setWindowTitle("Калькулятор");
-  graph_window = new Graph();
+  graph_window = new Graph_Window();
   credit_window = new CreditWindow();
   axis_window = new AxisWindow(this);
 

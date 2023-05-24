@@ -31,7 +31,7 @@ class MainWindow : public QMainWindow {
 
  private:
   Ui::MainWindow *ui;
-  Graph *graph_window;
+  Graph_Window *graph_window;
   CreditWindow *credit_window;
   AxisWindow *axis_window;
   int check_valid_data(QString data);
