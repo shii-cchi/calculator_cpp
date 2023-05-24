@@ -17,7 +17,8 @@ SOURCES += \
     credit_calculations.cc \
     main_window.cpp \
     validation.cc \
-    parser.cc
+    parser.cc \
+    x_window.cpp
 
 
 HEADERS += \
@@ -26,13 +27,15 @@ HEADERS += \
     credit_calculations.h \
     credit_window.h \
     graph_window.h \
-    main_window.h
+    main_window.h \
+    x_window.h
 
 FORMS += \
     axis_window.ui \
     credit_window.ui \
     graph_window.ui \
-    main_window.ui
+    main_window.ui \
+    x_window.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

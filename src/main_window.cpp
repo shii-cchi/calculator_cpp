@@ -8,6 +8,7 @@ MainWindow::MainWindow(QWidget *parent)
   graph_window = new Graph_Window();
   credit_window = new CreditWindow();
   axis_window = new AxisWindow(this);
+  x_window = new XWindow(this);
 
   connect(ui->pushButton_0, SIGNAL(clicked()), this, SLOT(click_numbers()));
   connect(ui->pushButton_1, SIGNAL(clicked()), this, SLOT(click_numbers()));
@@ -136,6 +137,13 @@ void MainWindow::on_pushButton_equal_clicked() {
     } else {
       ui->result_window->setText("Ошибка ввода");
     }
+  } else {
+    int status = check_valid_data(data);
+    if (status) {
+      x_window->show();
+    } else {
+      ui->result_window->setText("Ошибка ввода");
+    }
   }
 }
 
@@ -226,7 +234,7 @@ QSplineSeries *MainWindow::get_series(QString data, int max_x, int min_x) {
     step *= 10;
   }
 
-  for (int i = min_x; i <= max_x; i += step) {
+  for (double i = min_x; i <= max_x; i += step) {
     series->append(i, get_result(data, i));
 
     if (step > 1) {
@@ -243,7 +251,13 @@ QSplineSeries *MainWindow::get_series(QString data, int max_x, int min_x) {
   return series;
 }
 
-double MainWindow::get_result(QString data, int i) {
+void MainWindow::get_new_x(double x) {
+  QString data = replace_unary();
+  double res = get_result(data, x);
+   ui->result_window->setText(QString::number(res, 'f', 7));
+}
+
+double MainWindow::get_result(QString data, double i) {
   QString tmp = data;
   std::string str_without_x = tmp.replace('x', "(" + QString::number(i) + ")").toUtf8().constData();
 
