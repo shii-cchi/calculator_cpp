@@ -1,7 +1,5 @@
-// #ifndef SRC_HEADERS_GRAPH_H
-// #define SRC_HEADERS_GRAPH_H
-#ifndef SRC_GRAPH_H
-#define SRC_GRAPH_H
+#ifndef SRC_GRAPH_WINDOW_H
+#define SRC_GRAPH_WINDOW_H
 
 #include <QMainWindow>
 
@@ -20,5 +18,4 @@ class Graph : public QMainWindow {
   Ui::Graph *ui;
 };
 
-// #endif  // SRC_HEADERS_GRAPH_H
-#endif  // SRC_GRAPH_H
+#endif  // SRC_GRAPH_WINDOW_H

@@ -1,16 +1,17 @@
-//#include "../headers/credit.h"
-#include "credit.h"
-#include "ui_credit.h"
+#include "credit_window.h"
+#include "ui_credit_window.h"
 
-Credit::Credit(QWidget *parent) : QMainWindow(parent), ui(new Ui::Credit) {
+CreditWindow::CreditWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::CreditWindow) {
   ui->setupUi(this);
   this->setWindowTitle("Кредитный калькулятор");
 }
 
-Credit::~Credit() { delete ui; }
+CreditWindow::~CreditWindow() { delete ui; }
 
-void Credit::on_run_count_clicked() {
+void CreditWindow::on_run_count_clicked() {
   clear();
+
+  s21::CreditCalculations credit;
 
   if (!fields_is_empty()) {
     QString credit_type = get_credit_type();
@@ -18,10 +19,11 @@ void Credit::on_run_count_clicked() {
     QString credit_data = ui->credit_sum->text() + " " +
                           ui->credit_term->text() + " " +
                           ui->credit_percent->text() + " " + credit_type;
-    char *str_credit_data = credit_data.toLocal8Bit().data();
+
+    std::string credit_data_str = credit_data.toUtf8().constData();
 
     double max_payment = 0, min_payment = 0, overpayment = 0, total_sum = 0;
-    if (credit_calculate(str_credit_data, &max_payment, &min_payment,
+    if (credit.CreditCalculate(credit_data_str, &max_payment, &min_payment,
                          &overpayment, &total_sum)) {
       if (credit_type == "a") {
         ui->payment_2->setText(QString::number(max_payment, 'f', 0));
@@ -43,7 +45,7 @@ void Credit::on_run_count_clicked() {
   }
 }
 
-void Credit::clear() {
+void CreditWindow::clear() {
   ui->payment_1->setText("");
   ui->overpayment_1->setText("");
   ui->total_sum_1->setText("");
@@ -52,7 +54,7 @@ void Credit::clear() {
   ui->total_sum_2->setText("");
 }
 
-QString Credit::get_credit_type() {
+QString CreditWindow::get_credit_type() {
   QString credit_type;
 
   if (ui->credit_type_1->isChecked()) {
@@ -64,7 +66,7 @@ QString Credit::get_credit_type() {
   return credit_type;
 }
 
-int Credit::fields_is_empty() {
+int CreditWindow::fields_is_empty() {
   int status = 1;
   if (!ui->credit_sum->text().isEmpty() && !ui->credit_term->text().isEmpty() &&
       !ui->credit_percent->text().isEmpty() &&

@@ -1,16 +1,15 @@
-//#include "../headers/custom_axis.h"
-#include "custom_axis.h"
-#include "ui_custom_axis.h"
+#include "axis_window.h"
+#include "ui_axis_window.h"
 
-CustomAxis::CustomAxis(MainWindow *parent)
-    : QDialog(parent), ui(new Ui::CustomAxis) {
+AxisWindow::AxisWindow(MainWindow *parent)
+    : QDialog(parent), ui(new Ui::AxisWindow) {
   ui->setupUi(this);
   this->setWindowTitle("Область определения");
 }
 
-CustomAxis::~CustomAxis() { delete ui; }
+AxisWindow::~AxisWindow() { delete ui; }
 
-void CustomAxis::on_pushButton_apply_clicked() {
+void AxisWindow::on_pushButton_apply_clicked() {
   bool x_1, x_2;
   int max_x = ui->max_x->text().toInt(&x_1, 10);
   int min_x = ui->min_x->text().toInt(&x_2, 10);
@@ -25,12 +24,12 @@ void CustomAxis::on_pushButton_apply_clicked() {
   }
 }
 
-void CustomAxis::on_pushButton_cancel_clicked() {
+void AxisWindow::on_pushButton_cancel_clicked() {
   this->close();
   set_default();
 }
 
-void CustomAxis::set_default() {
+void AxisWindow::set_default() {
   ui->label_err->setText("");
   ui->max_x->setText("1000");
   ui->min_x->setText("-1000");

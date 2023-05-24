@@ -1,15 +1,13 @@
-//#include "../headers/calculator.h"
-#include "calculator.h"
-
-#include "ui_calculator.h"
+#include "main_window.h"
+#include "ui_main_window.h"
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent), ui(new Ui::MainWindow) {
   ui->setupUi(this);
   this->setWindowTitle("Калькулятор");
   graph_window = new Graph();
-  credit_window = new Credit();
-  custom_axis = new CustomAxis(this);
+  credit_window = new CreditWindow();
+  axis_window = new AxisWindow(this);
 
   connect(ui->pushButton_0, SIGNAL(clicked()), this, SLOT(click_numbers()));
   connect(ui->pushButton_1, SIGNAL(clicked()), this, SLOT(click_numbers()));
@@ -100,10 +98,8 @@ void MainWindow::click_bracket() {
 }
 
 void MainWindow::on_pushButton_pow_clicked() {
-  if (ui->result_window->text().last(1) != "^") {
     QString button_text = "^";
     ui->result_window->setText(get_new_window(button_text, 1));
-  }
 }
 
 void MainWindow::click_func() {
@@ -126,13 +122,15 @@ void MainWindow::on_pushButton_equal_clicked() {
     ui->result_window->setText("0");
   }
 
-  QString data = ui->result_window->text().replace(".", ",");
+  QString data = ui->result_window->text();
 
   if (data.indexOf('x') == -1) {
     double result = 0;
-    char *str_data = qstring_to_char(data);
+    std::string str_data = data.toUtf8().constData();
 
-    int status = calculate(str_data, &result);
+    s21::Calculations calc;
+
+    int status = calc.Calculate(str_data, &result);
     if (status) {
       ui->result_window->setText(QString::number(result, 'f', 7));
     } else {
@@ -145,11 +143,11 @@ void MainWindow::on_pushButton_graph_clicked() {
   if (ui->result_window->text().indexOf('x') != -1) {
     graph_window->close();
 
-    QString data = ui->result_window->text().replace(".", ",");
+    QString data = ui->result_window->text();
 
     int status = check_valid_data(data);
     if (status) {
-      custom_axis->show();
+      axis_window->show();
     }
   }
 }
@@ -170,19 +168,15 @@ QString MainWindow::get_new_window(QString button_text, int flag) {
 }
 
 int MainWindow::check_valid_data(QString data) {
-  char *str_x = qstring_to_char(data);
   double res = 0;
-  int status = calculate(str_x, &res);
+  std::string str_x= data.toUtf8().constData();
+
+  s21::Calculations calc;
+  int status = calc.Calculate(str_x, &res);
   if (!status) {
     ui->result_window->setText("Ошибка ввода");
   }
   return status;
-}
-
-char *MainWindow::qstring_to_char(QString qstr) {
-  QByteArray arr = qstr.toLocal8Bit();
-  char *str = arr.data();
-  return str;
 }
 
 void MainWindow::plot_graph(int max_x, int min_x) {
@@ -212,7 +206,7 @@ void MainWindow::plot_graph(int max_x, int min_x) {
 }
 
 QString MainWindow::replace_unary() {
-  QString tmp = ui->result_window->text().replace(".", ",");
+  QString tmp = ui->result_window->text();
   for (int i = 0; i < tmp.length(); i++) {
     if (tmp[i] == '-' && tmp[i + 1] != ' ') {
       tmp.replace(i, 1, "(-1) * ");
@@ -251,10 +245,12 @@ QSplineSeries *MainWindow::get_series(QString data, int max_x, int min_x) {
 
 double MainWindow::get_result(QString data, int i) {
   QString tmp = data;
-  char *str_without_x =
-      qstring_to_char(tmp.replace('x', "(" + QString::number(i) + ")"));
+  std::string str_without_x = tmp.replace('x', "(" + QString::number(i) + ")").toUtf8().constData();
+
+  s21::Calculations calc;
+
   double res = 0;
-  calculate(str_without_x, &res);
+  calc.Calculate(str_without_x, &res);
   return res;
 }
 

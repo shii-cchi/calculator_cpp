@@ -1,19 +1,17 @@
-// #ifndef SRC_HEADERS_CALCULATOR_H
-// #define SRC_HEADERS_CALCULATOR_H
-#ifndef SRC_CALCULATOR_H
-#define SRC_CALCULATOR_H
+#ifndef SRC_MAIN_WINDOW_H
+#define SRC_MAIN_WINDOW_H
 
 #include <QMainWindow>
 #include <QSplineSeries>
 #include <QValueAxis>
 #include <QtCharts>
 
-#include "credit.h"
-#include "custom_axis.h"
-#include "graph.h"
+#include "credit_window.h"
+#include "axis_window.h"
+#include "graph_window.h"
 #include "calculations.h"
 
-class CustomAxis;
+class AxisWindow;
 
 #define MAX_XY 1000000
 
@@ -34,10 +32,9 @@ class MainWindow : public QMainWindow {
  private:
   Ui::MainWindow *ui;
   Graph *graph_window;
-  Credit *credit_window;
-  CustomAxis *custom_axis;
+  CreditWindow *credit_window;
+  AxisWindow *axis_window;
   int check_valid_data(QString data);
-  char *qstring_to_char(QString qstr);
   QString replace_unary();
   QSplineSeries *get_series(QString data, int max_x, int min_x);
   QString get_new_window(QString button_text, int flag);
@@ -58,5 +55,5 @@ class MainWindow : public QMainWindow {
   void on_pushButton_graph_clicked();
   void on_pushButton_credit_clicked();
 };
-//#endif  // SRC_HEADERS_CALCULATOR_H
-#endif  // SRC_CALCULATOR_H
+
+#endif  // SRC_MAIN_WINDOW_H
