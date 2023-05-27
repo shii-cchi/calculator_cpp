@@ -9,16 +9,16 @@ CONFIG += c++17
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
-    axis_window.cpp \
-    credit_window.cpp \
-    graph_window.cpp \
-    main.cpp \
+    axis_window.cc \
+    credit_window.cc \
+    graph_window.cc \
+    main.cc \
     calculations.cc \
     credit_calculations.cc \
-    main_window.cpp \
+    main_window.cc \
     validation.cc \
     parser.cc \
-    x_window.cpp
+    x_window.cc
 
 
 HEADERS += \
