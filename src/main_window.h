@@ -28,9 +28,10 @@ class MainWindow : public QMainWindow {
 
  public:
   MainWindow(QWidget *parent = nullptr);
-  void plot_graph(int max_x, int min_x);
-  void get_new_x(double x);
   ~MainWindow();
+
+  void PlotGraph(int max_x, int min_x);
+  void GetNewX(double x);
 
  private:
   Ui::MainWindow *ui;
@@ -39,26 +40,26 @@ class MainWindow : public QMainWindow {
   AxisWindow *axis_window;
   XWindow *x_window;
 
-  int check_valid_data(QString data);
-  QString replace_unary();
-  QSplineSeries *get_series(QString data, int max_x, int min_x);
-  QString get_new_window(QString button_text, int flag);
-  double get_result(QString data, double i);
-  int get_step(int max_x, int min_x);
+  int CheckValidData(QString data);
+  QString ReplaceUnary();
+  QSplineSeries *GetSeries(QString data, int max_x, int min_x);
+  QString GetNewWindow(QString button_text, int flag);
+  double GetResult(QString data, double i);
+  int GetStep(int max_x, int min_x);
 
  private slots:
-  void click_numbers();
-  void on_pushButton_delete_all_clicked();
-  void on_pushButton_delete_1_clicked();
-  void on_pushButton_dot_clicked();
-  void click_operators();
-  void click_bracket();
-  void on_pushButton_pow_clicked();
-  void click_func();
-  void on_pushButton_unary_clicked();
-  void on_pushButton_equal_clicked();
-  void on_pushButton_graph_clicked();
-  void on_pushButton_credit_clicked();
+  void ClickNumbersAndBrackets();
+  void ClickPowAndDot();
+  void ClickOperators();
+  void ClickFunctions();
+  void ClickUnaryOperators();
+
+  void ClickDeleteAll();
+  void ClickDeleteSymbol();
+  
+  void ClickEqual()();
+  void ClickGraph();
+  void ClickCredit()();
 };
 
 #endif  // SRC_MAIN_WINDOW_H

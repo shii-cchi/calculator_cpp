@@ -25,7 +25,7 @@ class AxisWindow : public QDialog {
  private:
   Ui::AxisWindow *ui;
 
-  void set_default();
+  void SetDefault();
 };
 
 #endif  // SRC_AXIS_WINDOW_H

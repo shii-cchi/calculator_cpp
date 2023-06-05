@@ -10,57 +10,90 @@ MainWindow::MainWindow(QWidget *parent)
   axis_window = new AxisWindow(this);
   x_window = new XWindow(this);
 
-  connect(ui->pushButton_0, SIGNAL(clicked()), this, SLOT(click_numbers()));
-  connect(ui->pushButton_1, SIGNAL(clicked()), this, SLOT(click_numbers()));
-  connect(ui->pushButton_2, SIGNAL(clicked()), this, SLOT(click_numbers()));
-  connect(ui->pushButton_3, SIGNAL(clicked()), this, SLOT(click_numbers()));
-  connect(ui->pushButton_4, SIGNAL(clicked()), this, SLOT(click_numbers()));
-  connect(ui->pushButton_5, SIGNAL(clicked()), this, SLOT(click_numbers()));
-  connect(ui->pushButton_6, SIGNAL(clicked()), this, SLOT(click_numbers()));
-  connect(ui->pushButton_7, SIGNAL(clicked()), this, SLOT(click_numbers()));
-  connect(ui->pushButton_8, SIGNAL(clicked()), this, SLOT(click_numbers()));
-  connect(ui->pushButton_9, SIGNAL(clicked()), this, SLOT(click_numbers()));
-  connect(ui->pushButton_x, SIGNAL(clicked()), this, SLOT(click_numbers()));
+  connect(ui->pushButton_0, SIGNAL(clicked()), this, SLOT(ClickNumbersAndBrackets()));
+  connect(ui->pushButton_1, SIGNAL(clicked()), this, SLOT(ClickNumbersAndBrackets()));
+  connect(ui->pushButton_2, SIGNAL(clicked()), this, SLOT(ClickNumbersAndBrackets()));
+  connect(ui->pushButton_3, SIGNAL(clicked()), this, SLOT(ClickNumbersAndBrackets()));
+  connect(ui->pushButton_4, SIGNAL(clicked()), this, SLOT(ClickNumbersAndBrackets()));
+  connect(ui->pushButton_5, SIGNAL(clicked()), this, SLOT(ClickNumbersAndBrackets()));
+  connect(ui->pushButton_6, SIGNAL(clicked()), this, SLOT(ClickNumbersAndBrackets()));
+  connect(ui->pushButton_7, SIGNAL(clicked()), this, SLOT(ClickNumbersAndBrackets()));
+  connect(ui->pushButton_8, SIGNAL(clicked()), this, SLOT(ClickNumbersAndBrackets()));
+  connect(ui->pushButton_9, SIGNAL(clicked()), this, SLOT(ClickNumbersAndBrackets()));
+  connect(ui->pushButton_x, SIGNAL(clicked()), this, SLOT(ClickNumbersAndBrackets()));
 
-  connect(ui->pushButton_plus, SIGNAL(clicked()), this,
-          SLOT(click_operators()));
-  connect(ui->pushButton_minus, SIGNAL(clicked()), this,
-          SLOT(click_operators()));
-  connect(ui->pushButton_mult, SIGNAL(clicked()), this,
-          SLOT(click_operators()));
-  connect(ui->pushButton_divide, SIGNAL(clicked()), this,
-          SLOT(click_operators()));
-  connect(ui->pushButton_mod, SIGNAL(clicked()), this, SLOT(click_operators()));
+  connect(ui->pushButton_bracket_1, SIGNAL(clicked()), this, SLOT(ClickNumbersAndBrackets()));
+  connect(ui->pushButton_bracket_2, SIGNAL(clicked()), this, SLOT(ClickNumbersAndBrackets()));
 
-  connect(ui->pushButton_bracket_1, SIGNAL(clicked()), this,
-          SLOT(click_bracket()));
-  connect(ui->pushButton_bracket_2, SIGNAL(clicked()), this,
-          SLOT(click_bracket()));
+  connect(ui->pushButton_pow, SIGNAL(clicked()), this, SLOT(ClickPowAndDot()));
+  connect(ui->pushButton_dot, SIGNAL(clicked()), this, SLOT(ClickPowAndDot()));
 
-  connect(ui->pushButton_lg, SIGNAL(clicked()), this, SLOT(click_func()));
-  connect(ui->pushButton_ln, SIGNAL(clicked()), this, SLOT(click_func()));
-  connect(ui->pushButton_sqrt, SIGNAL(clicked()), this, SLOT(click_func()));
-  connect(ui->pushButton_sin, SIGNAL(clicked()), this, SLOT(click_func()));
-  connect(ui->pushButton_cos, SIGNAL(clicked()), this, SLOT(click_func()));
-  connect(ui->pushButton_tan, SIGNAL(clicked()), this, SLOT(click_func()));
-  connect(ui->pushButton_asin, SIGNAL(clicked()), this, SLOT(click_func()));
-  connect(ui->pushButton_acos, SIGNAL(clicked()), this, SLOT(click_func()));
-  connect(ui->pushButton_atan, SIGNAL(clicked()), this, SLOT(click_func()));
+  connect(ui->pushButton_plus, SIGNAL(clicked()), this, SLOT(ClickOperators()));
+  connect(ui->pushButton_minus, SIGNAL(clicked()), this, SLOT(ClickOperators()));
+  connect(ui->pushButton_mult, SIGNAL(clicked()), this, SLOT(ClickOperators()));
+  connect(ui->pushButton_divide, SIGNAL(clicked()), this, SLOT(ClickOperators()));
+  connect(ui->pushButton_mod, SIGNAL(clicked()), this, SLOT(ClickOperators()));
+
+  connect(ui->pushButton_lg, SIGNAL(clicked()), this, SLOT(ClickFunctions()));
+  connect(ui->pushButton_ln, SIGNAL(clicked()), this, SLOT(ClickFunctions()));
+  connect(ui->pushButton_sqrt, SIGNAL(clicked()), this, SLOT(ClickFunctions()));
+  connect(ui->pushButton_sin, SIGNAL(clicked()), this, SLOT(ClickFunctions()));
+  connect(ui->pushButton_cos, SIGNAL(clicked()), this, SLOT(ClickFunctions()));
+  connect(ui->pushButton_tan, SIGNAL(clicked()), this, SLOT(ClickFunctions()));
+  connect(ui->pushButton_asin, SIGNAL(clicked()), this, SLOT(ClickFunctions()));
+  connect(ui->pushButton_acos, SIGNAL(clicked()), this, SLOT(ClickFunctions()));
+  connect(ui->pushButton_atan, SIGNAL(clicked()), this, SLOT(ClickFunctions()));
+
+  connect(ui->pushButton_unary, SIGNAL(clicked()), this, SLOT(ClickUnaryOperators()));
+
+  connect(ui->pushButton_delete_all, SIGNAL(clicked()), this, SLOT(ClickDeleteAll()));
+  connect(ui->pushButton_delete_1, SIGNAL(clicked()), this, SLOT(ClickDeleteSymbol()));
+
+  connect(ui->pushButton_equal, SIGNAL(clicked()), this, SLOT(ClickEqual()));
+  connect(ui->pushButton_graph, SIGNAL(clicked()), this, SLOT(ClickGraph()));
+  connect(ui->pushButton_credit, SIGNAL(clicked()), this, SLOT(ClickCredit()));
 }
 
 MainWindow::~MainWindow() { delete ui; }
 
-void MainWindow::click_numbers() {
+void MainWindow::ClickNumbersAndBrackets() {
   QPushButton *button = (QPushButton *)sender();
   QString button_text = button->text();
-  ui->result_window->setText(get_new_window(button_text, 2));
+  ui->result_window->setText(GetNewWindow(button_text, 2));
 }
 
-void MainWindow::on_pushButton_delete_all_clicked() {
+void MainWindow::ClickPowAndDot() {
+  QPushButton *button = (QPushButton *)sender();
+  QString button_text = button->text();
+  ui->result_window->setText(GetNewWindow(button_text, 1));
+}
+
+void MainWindow::ClickOperators() {
+  QPushButton *button = (QPushButton *)sender();
+  QString button_text = " " + button->text() + " ";
+  ui->result_window->setText(GetNewWindow(button_text, 1));
+}
+
+void MainWindow::ClickFunctions() {
+  QPushButton *button = (QPushButton *)sender();
+  QString button_text = button->text() + "(";
+  ui->result_window->setText(GetNewWindow(button_text, 2));
+}
+
+void MainWindow::ClickUnaryOperators() {
+  if (ui->result_window->text().last(1) == " " ||
+      ui->result_window->text().last(1) == "(" ||
+      ui->result_window->text().last(1) == "0") {
+    QString button_text = "-";
+    ui->result_window->setText(GetNewWindow(button_text, 2));
+  }
+}
+
+void MainWindow::ClickDeleteAll() {
   ui->result_window->setText("0");
 }
 
-void MainWindow::on_pushButton_delete_1_clicked() {
+void MainWindow::ClickDeleteSymbol() {
   QString window = ui->result_window->text();
   if (window == "Ошибка ввода") {
     window = "0";
@@ -81,44 +114,7 @@ void MainWindow::on_pushButton_delete_1_clicked() {
   ui->result_window->setText(window);
 }
 
-void MainWindow::on_pushButton_dot_clicked() {
-  QString button_text = ".";
-  ui->result_window->setText(get_new_window(button_text, 1));
-}
-
-void MainWindow::click_operators() {
-  QPushButton *button = (QPushButton *)sender();
-  QString button_text = " " + button->text() + " ";
-  ui->result_window->setText(get_new_window(button_text, 1));
-}
-
-void MainWindow::click_bracket() {
-  QPushButton *button = (QPushButton *)sender();
-  QString button_text = button->text();
-  ui->result_window->setText(get_new_window(button_text, 2));
-}
-
-void MainWindow::on_pushButton_pow_clicked() {
-    QString button_text = "^";
-    ui->result_window->setText(get_new_window(button_text, 1));
-}
-
-void MainWindow::click_func() {
-  QPushButton *button = (QPushButton *)sender();
-  QString button_text = button->text() + "(";
-  ui->result_window->setText(get_new_window(button_text, 2));
-}
-
-void MainWindow::on_pushButton_unary_clicked() {
-  if (ui->result_window->text().last(1) == " " ||
-      ui->result_window->text().last(1) == "(" ||
-      ui->result_window->text().last(1) == "0") {
-    QString button_text = "-";
-    ui->result_window->setText(get_new_window(button_text, 2));
-  }
-}
-
-void MainWindow::on_pushButton_equal_clicked() {
+void MainWindow::ClickEqual() {
   if (ui->result_window->text() == "Ошибка ввода") {
     ui->result_window->setText("0");
   }
@@ -132,7 +128,7 @@ void MainWindow::on_pushButton_equal_clicked() {
     s21::Calculations calc;
     int status = calc.Calculate(str_data, &result);  
   } else {
-    int status = check_valid_data(data);
+    int status = CheckValidData(data);
   }
 
   if (status && data.indexOf('x') == -1) {
@@ -144,13 +140,13 @@ void MainWindow::on_pushButton_equal_clicked() {
   }
 }
 
-void MainWindow::on_pushButton_graph_clicked() {
+void MainWindow::ClickGraph() {
   if (ui->result_window->text().indexOf('x') != -1) {
     graph_window->close();
 
     QString data = ui->result_window->text();
 
-    int status = check_valid_data(data);
+    int status = CheckValidData(data);
     if (status) {
       axis_window->show();
     } else {
@@ -159,9 +155,9 @@ void MainWindow::on_pushButton_graph_clicked() {
   }
 }
 
-void MainWindow::on_pushButton_credit_clicked() { credit_window->show(); }
+void MainWindow::ClickCredit() { credit_window->show(); }
 
-QString MainWindow::get_new_window(QString button_text, int flag) {
+QString MainWindow::GetNewWindow(QString button_text, int flag) {
   QString new_window;
   if (flag == 2 && (ui->result_window->text() == "0" ||
                     ui->result_window->text() == "Ошибка ввода")) {
@@ -174,7 +170,7 @@ QString MainWindow::get_new_window(QString button_text, int flag) {
   return new_window;
 }
 
-int MainWindow::check_valid_data(QString data) {
+int MainWindow::CheckValidData(QString data) {
   double res = 0;
   std::string str_x= data.toUtf8().constData();
 
@@ -183,13 +179,13 @@ int MainWindow::check_valid_data(QString data) {
   return status;
 }
 
-void MainWindow::plot_graph(int max_x, int min_x) {
+void MainWindow::PlotGraph(int max_x, int min_x) {
   QChart *chart = new QChart();
   chart->legend()->hide();
 
-  QString data = replace_unary();
+  QString data = ReplaceUnary();
 
-  QSplineSeries *series = get_series(data, max_x, min_x);
+  QSplineSeries *series = GetSeries(data, max_x, min_x);
   chart->addSeries(series);
 
   QValueAxis *axis_x = new QValueAxis;
@@ -209,7 +205,7 @@ void MainWindow::plot_graph(int max_x, int min_x) {
   graph_window->show();
 }
 
-QString MainWindow::replace_unary() {
+QString MainWindow::ReplaceUnary() {
   QString tmp = ui->result_window->text();
   for (int i = 0; i < tmp.length(); i++) {
     if (tmp[i] == '-' && tmp[i + 1] != ' ') {
@@ -220,10 +216,10 @@ QString MainWindow::replace_unary() {
   return tmp;
 }
 
-QSplineSeries *MainWindow::get_series(QString data, int max_x, int min_x) {
+QSplineSeries *MainWindow::GetSeries(QString data, int max_x, int min_x) {
   QSplineSeries *series = new QSplineSeries();
 
-  int step = get_step(max_x, min_x);
+  int step = GetStep(max_x, min_x);
 
   if ((data.indexOf("sin") != -1 || data.indexOf("cos") != -1) &&
       (step >= 10 || max_x - min_x == 2000)) {
@@ -231,15 +227,15 @@ QSplineSeries *MainWindow::get_series(QString data, int max_x, int min_x) {
   }
 
   for (double i = min_x; i <= max_x; i += step) {
-    series->append(i, get_result(data, i));
+    series->append(i, GetResult(data, i));
 
     if (step > 1) {
       if (i + step == 0) {
-        series->append(-1, get_result(data, -1));
+        series->append(-1, GetResult(data, -1));
       }
 
       if (i == 0) {
-        series->append(1, get_result(data, 1));
+        series->append(1, GetResult(data, 1));
       }
     }
   }
@@ -247,13 +243,13 @@ QSplineSeries *MainWindow::get_series(QString data, int max_x, int min_x) {
   return series;
 }
 
-void MainWindow::get_new_x(double x) {
-  QString data = replace_unary();
-  double res = get_result(data, x);
+void MainWindow::GetNewX(double x) {
+  QString data = ReplaceUnary();
+  double res = GetResult(data, x);
    ui->result_window->setText(QString::number(res, 'f', 7));
 }
 
-double MainWindow::get_result(QString data, double i) {
+double MainWindow::GetResult(QString data, double i) {
   QString tmp = data;
   std::string str_without_x = tmp.replace('x', "(" + QString::number(i) + ")").toUtf8().constData();
 
@@ -264,7 +260,7 @@ double MainWindow::get_result(QString data, double i) {
   return res;
 }
 
-int MainWindow::get_step(int max_x, int min_x) {
+int MainWindow::GetStep(int max_x, int min_x) {
   int step = 1;
 
   if (max_x - min_x > 2000 && max_x - min_x <= 20000) {

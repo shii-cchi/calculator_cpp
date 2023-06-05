@@ -93,8 +93,7 @@ char s21::Calculations::isNum(std::string &str_input, int *index_input, double *
     if (count_symbol > 0) {
         *index_input += count_symbol;
         status = 1;
-    }
-    else {
+    } else {
         if (str_input[*index_input] == 'x')
         {
             status = 'x';
@@ -183,7 +182,6 @@ std::string s21::Calculations::GetSubstr(std::string &str_input, int index_input
         new_str.resize(i + 1, str_input[index_input + i]);
     }
 
-    //std::cout << new_str << std::endl;
     return new_str;
 }
 

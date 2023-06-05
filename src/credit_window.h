@@ -22,9 +22,9 @@ class CreditWindow : public QMainWindow {
  private:
   Ui::CreditWindow *ui;
 
-  void clear();
-  QString get_credit_type();
-  int fields_is_empty();
+  void Clear();
+  QString GetCreditType();
+  bool isEmptyFields();
 };
 
 #endif  // SRC_CREDIT_WINDOW_H

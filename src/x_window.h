@@ -27,7 +27,7 @@ private slots:
 private:
     Ui::XWindow *ui;
 
-    void set_default();
+    void SetDefault();
 };
 
 #endif // X_WINDOW_H

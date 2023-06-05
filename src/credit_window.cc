@@ -9,12 +9,12 @@ CreditWindow::CreditWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::Cr
 CreditWindow::~CreditWindow() { delete ui; }
 
 void CreditWindow::on_run_count_clicked() {
-  clear();
+  Clear();
 
   s21::CreditCalculations credit;
 
-  if (!fields_is_empty()) {
-    QString credit_type = get_credit_type();
+  if (!isEmptyFields()) {
+    QString credit_type = GetCreditType();
 
     QString credit_data = ui->credit_sum->text() + " " +
                           ui->credit_term->text() + " " +
@@ -45,7 +45,7 @@ void CreditWindow::on_run_count_clicked() {
   }
 }
 
-void CreditWindow::clear() {
+void CreditWindow::Clear() {
   ui->payment_1->setText("");
   ui->overpayment_1->setText("");
   ui->total_sum_1->setText("");
@@ -54,7 +54,7 @@ void CreditWindow::clear() {
   ui->total_sum_2->setText("");
 }
 
-QString CreditWindow::get_credit_type() {
+QString CreditWindow::GetCreditType() {
   QString credit_type;
 
   if (ui->credit_type_1->isChecked()) {
@@ -66,12 +66,12 @@ QString CreditWindow::get_credit_type() {
   return credit_type;
 }
 
-int CreditWindow::fields_is_empty() {
-  int status = 1;
+bool CreditWindow::isEmptyFields() {
+  bool status = true;
   if (!ui->credit_sum->text().isEmpty() && !ui->credit_term->text().isEmpty() &&
       !ui->credit_percent->text().isEmpty() &&
       (ui->credit_type_1->isChecked() || ui->credit_type_2->isChecked())) {
-    status = 0;
+    status = false;
   }
   return status;
 }
