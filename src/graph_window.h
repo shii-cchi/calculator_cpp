@@ -4,18 +4,18 @@
 #include <QMainWindow>
 
 namespace Ui {
-class Graph_Window;
+class GraphWindow;
 }
 
-class Graph_Window : public QMainWindow {
+class GraphWindow : public QMainWindow {
   Q_OBJECT
 
  public:
-  explicit Graph_Window(QWidget *parent = nullptr);
-  ~Graph_Window();
+  explicit GraphWindow(QWidget *parent = nullptr);
+  ~GraphWindow();
 
  private:
-  Ui::Graph_Window *ui;
+  Ui::GraphWindow *ui;
 };
 
 #endif  // SRC_GRAPH_WINDOW_H

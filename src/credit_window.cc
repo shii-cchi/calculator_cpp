@@ -5,7 +5,7 @@ CreditWindow::CreditWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::Cr
   ui->setupUi(this);
   this->setWindowTitle("Кредитный калькулятор");
 
-  connect(ui->pushButton_run_count, SIGNAL(clicked()), this, SLOT(ClickRunCount()));
+  connect(ui->run_count, SIGNAL(clicked()), this, SLOT(ClickRunCount()));
 }
 
 CreditWindow::~CreditWindow() { delete ui; }

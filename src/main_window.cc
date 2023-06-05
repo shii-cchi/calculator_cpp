@@ -5,7 +5,7 @@ MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent), ui(new Ui::MainWindow) {
   ui->setupUi(this);
   this->setWindowTitle("Калькулятор");
-  graph_window = new Graph_Window();
+  graph_window = new GraphWindow();
   credit_window = new CreditWindow();
   axis_window = new AxisWindow(this);
   x_window = new XWindow(this);
@@ -96,19 +96,26 @@ void MainWindow::ClickDeleteSymbol() {
   if (window == "Ошибка ввода") {
     window = "0";
   }
-  if (window.length() > 1) {
+  if (window.length() ==  1) {
+    window = "0";
+  } else {
+    char last_symbol;
+
     do {
       window = window.chopped(1);
-    } while (window.last(1) != "(" && window.last(1) != " " &&
-             window.length() > 1);
+      last_symbol = window[window.length() - 1].toLatin1();
+    } while (last_symbol != '(' && last_symbol != ' ' &&
+             window.length() > 1 && last_symbol != '.' && last_symbol != '^' && !isdigit(last_symbol));
 
-    if (window.last(1) == " ") {
+    if (last_symbol == ' ' && (isdigit(window[window.length() - 2].toLatin1()) || window[window.length() - 2].toLatin1() == 'x')) {
       window = window.chopped(1);
     }
   }
-  if (window.length() == 1) {
+
+  if (window.length() == 1 && !isdigit(window[window.length() - 1].toLatin1()) && window[window.length() - 1].toLatin1() != '-' && window[window.length() - 1].toLatin1() != 'x') {
     window = "0";
   }
+
   ui->result_window->setText(window);
 }
 
@@ -121,7 +128,7 @@ void MainWindow::ClickEqual() {
   double result = GetResult(ui->result_window->text(), &status);
  
   if (status) {
-    if (data.indexOf('x') == -1) {
+    if (ui->result_window->text().indexOf('x') == -1) {
       ui->result_window->setText(QString::number(result, 'f', 7));
     } else {
       x_window->show();
@@ -175,7 +182,7 @@ void MainWindow::PlotGraph(int max_x, int min_x) {
   QChart *chart = new QChart();
   chart->legend()->hide();
 
-  QString data = ReplaceUnary();
+  QString data = ui->result_window->text();
 
   QSplineSeries *series = GetSeries(data, max_x, min_x);
   chart->addSeries(series);
@@ -195,17 +202,6 @@ void MainWindow::PlotGraph(int max_x, int min_x) {
 
   graph_window->setCentralWidget(chartView);
   graph_window->show();
-}
-
-QString MainWindow::ReplaceUnary() {
-  QString tmp = ui->result_window->text();
-  for (int i = 0; i < tmp.length(); i++) {
-    if (tmp[i] == '-' && tmp[i + 1] != ' ') {
-      tmp.replace(i, 1, "(-1) * ");
-      i += 7;
-    }
-  }
-  return tmp;
 }
 
 QSplineSeries *MainWindow::GetSeries(QString data, int max_x, int min_x) {
@@ -236,7 +232,7 @@ QSplineSeries *MainWindow::GetSeries(QString data, int max_x, int min_x) {
 }
 
 void MainWindow::GetNewX(double x) {
-  QString data = ReplaceUnary();
+  QString data = ui->result_window->text();
   double res = Get_Result(data, x);
   ui->result_window->setText(QString::number(res, 'f', 7));
 }
@@ -246,10 +242,10 @@ double MainWindow::Get_Result(QString data, double i) {
   std::string str_without_x = tmp.replace('x', "(" + QString::number(i) + ")").toUtf8().constData();
 
   s21::Calculations calc;
+  bool status;
 
-  double res = 0;
-  calc.Calculate(str_without_x, &res);
-  return res;
+  double result = calc.Calculate(str_without_x, &status);
+  return result;
 }
 
 int MainWindow::GetStep(int max_x, int min_x) {

@@ -35,13 +35,12 @@ class MainWindow : public QMainWindow {
 
  private:
   Ui::MainWindow *ui;
-  Graph_Window *graph_window;
+  GraphWindow *graph_window;
   CreditWindow *credit_window;
   AxisWindow *axis_window;
   XWindow *x_window;
 
   double GetResult(QString data, bool *status);
-  QString ReplaceUnary();
   QSplineSeries *GetSeries(QString data, int max_x, int min_x);
   QString GetNewWindow(QString button_text, int flag);
   double Get_Result(QString data, double i);
@@ -57,9 +56,9 @@ class MainWindow : public QMainWindow {
   void ClickDeleteAll();
   void ClickDeleteSymbol();
   
-  void ClickEqual()();
+  void ClickEqual();
   void ClickGraph();
-  void ClickCredit()();
+  void ClickCredit();
 };
 
 #endif  // SRC_MAIN_WINDOW_H

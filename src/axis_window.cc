@@ -7,7 +7,7 @@ AxisWindow::AxisWindow(MainWindow *parent)
   this->setWindowTitle("Область определения");
 
   connect(ui->pushButton_apply, SIGNAL(clicked()), this, SLOT(ClickApply()));
-  connect(ui->pushButton_cancle, SIGNAL(clicked()), this, SLOT(ClickCancel()));
+  connect(ui->pushButton_cancel, SIGNAL(clicked()), this, SLOT(ClickCancel()));
 }
 
 AxisWindow::~AxisWindow() { delete ui; }
