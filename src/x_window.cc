@@ -7,13 +7,16 @@ XWindow::XWindow(QWidget *parent) :
 {
     ui->setupUi(this);
     this->setWindowTitle("X");
+
+    connect(ui->pushButton_apply, SIGNAL(clicked()), this, SLOT(ClickApply()));
+    connect(ui->pushButton_cancel, SIGNAL(clicked()), this, SLOT(ClickCancel()));
 }
 
 XWindow::~XWindow() {
     delete ui;
 }
 
-void XWindow::on_pushButton_apply_clicked() {
+void XWindow::ClickApply() {
     bool x_1;
     int x = ui->x->text().toInt(&x_1, 10);
 
@@ -28,7 +31,7 @@ void XWindow::on_pushButton_apply_clicked() {
 }
 
 
-void XWindow::on_pushButton_cancel_clicked() {
+void XWindow::ClickCancel() {
     this->close();
     SetDefault();
 }

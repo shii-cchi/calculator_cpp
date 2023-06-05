@@ -5,11 +5,14 @@ AxisWindow::AxisWindow(MainWindow *parent)
     : QDialog(parent), ui(new Ui::AxisWindow) {
   ui->setupUi(this);
   this->setWindowTitle("Область определения");
+
+  connect(ui->pushButton_apply, SIGNAL(clicked()), this, SLOT(ClickApply()));
+  connect(ui->pushButton_cancle, SIGNAL(clicked()), this, SLOT(ClickCancel()));
 }
 
 AxisWindow::~AxisWindow() { delete ui; }
 
-void AxisWindow::on_pushButton_apply_clicked() {
+void AxisWindow::ClickApply() {
   bool x_1, x_2;
   int max_x = ui->max_x->text().toInt(&x_1, 10);
   int min_x = ui->min_x->text().toInt(&x_2, 10);
@@ -24,7 +27,7 @@ void AxisWindow::on_pushButton_apply_clicked() {
   }
 }
 
-void AxisWindow::on_pushButton_cancel_clicked() {
+void AxisWindow::ClickCancel() {
   this->close();
   SetDefault();
 }

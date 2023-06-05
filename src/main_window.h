@@ -40,11 +40,11 @@ class MainWindow : public QMainWindow {
   AxisWindow *axis_window;
   XWindow *x_window;
 
-  int CheckValidData(QString data);
+  double GetResult(QString data, bool *status);
   QString ReplaceUnary();
   QSplineSeries *GetSeries(QString data, int max_x, int min_x);
   QString GetNewWindow(QString button_text, int flag);
-  double GetResult(QString data, double i);
+  double Get_Result(QString data, double i);
   int GetStep(int max_x, int min_x);
 
  private slots:

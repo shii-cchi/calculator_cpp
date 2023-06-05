@@ -17,7 +17,7 @@ class CreditWindow : public QMainWindow {
   ~CreditWindow();
 
  private slots:
-  void on_run_count_clicked();
+  void ClickRunCount();
 
  private:
   Ui::CreditWindow *ui;

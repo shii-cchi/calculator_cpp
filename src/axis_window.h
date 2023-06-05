@@ -19,8 +19,8 @@ class AxisWindow : public QDialog {
   ~AxisWindow();
 
  private slots:
-  void on_pushButton_apply_clicked();
-  void on_pushButton_cancel_clicked();
+  void ClickApply();
+  void ClickCancel();
 
  private:
   Ui::AxisWindow *ui;

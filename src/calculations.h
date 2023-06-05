@@ -14,7 +14,7 @@ namespace s21 {
 
     class Calculations {
         public:
-            bool Calculate(std::string &str_input, double *result);
+            double Calculate(std::string &str_input, bool *status);
 
         private:
             enum lexeme_type { NUMBER, OPERATOR, FUNCTION, BRACKET, UNDEFINED };

@@ -58,14 +58,12 @@ MainWindow::~MainWindow() { delete ui; }
 
 void MainWindow::ClickNumbersAndBrackets() {
   QPushButton *button = (QPushButton *)sender();
-  QString button_text = button->text();
-  ui->result_window->setText(GetNewWindow(button_text, 2));
+  ui->result_window->setText(GetNewWindow(button->text(), 2));
 }
 
 void MainWindow::ClickPowAndDot() {
   QPushButton *button = (QPushButton *)sender();
-  QString button_text = button->text();
-  ui->result_window->setText(GetNewWindow(button_text, 1));
+  ui->result_window->setText(GetNewWindow(button->text(), 1));
 }
 
 void MainWindow::ClickOperators() {
@@ -84,8 +82,8 @@ void MainWindow::ClickUnaryOperators() {
   if (ui->result_window->text().last(1) == " " ||
       ui->result_window->text().last(1) == "(" ||
       ui->result_window->text().last(1) == "0") {
-    QString button_text = "-";
-    ui->result_window->setText(GetNewWindow(button_text, 2));
+
+    ui->result_window->setText(GetNewWindow("-", 2));
   }
 }
 
@@ -119,22 +117,15 @@ void MainWindow::ClickEqual() {
     ui->result_window->setText("0");
   }
 
-  QString data = ui->result_window->text();
-
-  if (data.indexOf('x') == -1) {
-    double result = 0;
-    std::string str_data = data.toUtf8().constData();
-
-    s21::Calculations calc;
-    int status = calc.Calculate(str_data, &result);  
-  } else {
-    int status = CheckValidData(data);
-  }
-
-  if (status && data.indexOf('x') == -1) {
-    ui->result_window->setText(QString::number(result, 'f', 7));
-  } else if (status && data.indexOf('x') != -1) {
-    x_window->show();
+  bool status;
+  double result = GetResult(ui->result_window->text(), &status);
+ 
+  if (status) {
+    if (data.indexOf('x') == -1) {
+      ui->result_window->setText(QString::number(result, 'f', 7));
+    } else {
+      x_window->show();
+    }
   } else {
     ui->result_window->setText("Ошибка ввода");
   }
@@ -144,9 +135,9 @@ void MainWindow::ClickGraph() {
   if (ui->result_window->text().indexOf('x') != -1) {
     graph_window->close();
 
-    QString data = ui->result_window->text();
+    bool status;
+    GetResult(ui->result_window->text(), &status);
 
-    int status = CheckValidData(data);
     if (status) {
       axis_window->show();
     } else {
@@ -170,13 +161,14 @@ QString MainWindow::GetNewWindow(QString button_text, int flag) {
   return new_window;
 }
 
-int MainWindow::CheckValidData(QString data) {
-  double res = 0;
+double MainWindow::GetResult(QString data, bool *status) {
+  bool status_calc = false;
   std::string str_x= data.toUtf8().constData();
 
   s21::Calculations calc;
-  int status = calc.Calculate(str_x, &res);
-  return status;
+  double result = calc.Calculate(str_x, &status_calc);
+  *status = status_calc;
+  return result;
 }
 
 void MainWindow::PlotGraph(int max_x, int min_x) {
@@ -227,15 +219,15 @@ QSplineSeries *MainWindow::GetSeries(QString data, int max_x, int min_x) {
   }
 
   for (double i = min_x; i <= max_x; i += step) {
-    series->append(i, GetResult(data, i));
+    series->append(i, Get_Result(data, i));
 
     if (step > 1) {
       if (i + step == 0) {
-        series->append(-1, GetResult(data, -1));
+        series->append(-1, Get_Result(data, -1));
       }
 
       if (i == 0) {
-        series->append(1, GetResult(data, 1));
+        series->append(1, Get_Result(data, 1));
       }
     }
   }
@@ -245,11 +237,11 @@ QSplineSeries *MainWindow::GetSeries(QString data, int max_x, int min_x) {
 
 void MainWindow::GetNewX(double x) {
   QString data = ReplaceUnary();
-  double res = GetResult(data, x);
-   ui->result_window->setText(QString::number(res, 'f', 7));
+  double res = Get_Result(data, x);
+  ui->result_window->setText(QString::number(res, 'f', 7));
 }
 
-double MainWindow::GetResult(QString data, double i) {
+double MainWindow::Get_Result(QString data, double i) {
   QString tmp = data;
   std::string str_without_x = tmp.replace('x', "(" + QString::number(i) + ")").toUtf8().constData();
 
