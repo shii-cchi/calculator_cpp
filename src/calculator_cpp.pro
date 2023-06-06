@@ -1,6 +1,6 @@
 QT       += core gui charts
 
-greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
+greaterThan(QT_MAJOR_VERSION, 4): QT += widgets printsupport
 
 CONFIG += c++17
 
@@ -9,29 +9,28 @@ CONFIG += c++17
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
-    axis_window.cc \
     credit_window.cc \
     graph_window.cc \
     main.cc \
     calculations.cc \
     credit_calculations.cc \
     main_window.cc \
+    qcustomplot.cpp \
     validation.cc \
     parser.cc \
     x_window.cc
 
 
 HEADERS += \
-    axis_window.h \
     calculations.h \
     credit_calculations.h \
     credit_window.h \
     graph_window.h \
     main_window.h \
+    qcustomplot.h \
     x_window.h
 
 FORMS += \
-    axis_window.ui \
     credit_window.ui \
     graph_window.ui \
     main_window.ui \

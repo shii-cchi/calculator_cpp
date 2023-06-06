@@ -3,6 +3,14 @@
 
 #include <QMainWindow>
 
+#include "qcustomplot.h"
+#include "main_window.h"
+
+#define MAX_XY 1000000
+#define DOTS 1000
+
+class MainWindow;
+
 namespace Ui {
 class GraphWindow;
 }
@@ -14,8 +22,12 @@ class GraphWindow : public QMainWindow {
   explicit GraphWindow(QWidget *parent = nullptr);
   ~GraphWindow();
 
+ private slots:
+  void ClickBuild();
+
  private:
   Ui::GraphWindow *ui;
+  void SetDefault();
 };
 
 #endif  // SRC_GRAPH_WINDOW_H

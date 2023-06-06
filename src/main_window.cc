@@ -5,9 +5,8 @@ MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent), ui(new Ui::MainWindow) {
   ui->setupUi(this);
   this->setWindowTitle("Калькулятор");
-  graph_window = new GraphWindow();
+  graph_window = new GraphWindow(this);
   credit_window = new CreditWindow();
-  axis_window = new AxisWindow(this);
   x_window = new XWindow(this);
 
   connect(ui->pushButton_0, SIGNAL(clicked()), this, SLOT(ClickNumbersAndBrackets()));
@@ -146,7 +145,7 @@ void MainWindow::ClickGraph() {
     GetResult(ui->result_window->text(), &status);
 
     if (status) {
-      axis_window->show();
+      graph_window->show();
     } else {
       ui->result_window->setText("Ошибка ввода");
     }
@@ -178,86 +177,17 @@ double MainWindow::GetResult(QString data, bool *status) {
   return result;
 }
 
-void MainWindow::PlotGraph(int max_x, int min_x) {
-  QChart *chart = new QChart();
-  chart->legend()->hide();
-
-  QString data = ui->result_window->text();
-
-  QSplineSeries *series = GetSeries(data, max_x, min_x);
-  chart->addSeries(series);
-
-  QValueAxis *axis_x = new QValueAxis;
-  QValueAxis *axis_y = new QValueAxis;
-  chart->addAxis(axis_x, Qt::AlignBottom);
-  chart->addAxis(axis_y, Qt::AlignLeft);
-  axis_x->setLabelFormat("%.6g");
-  axis_y->setLabelFormat("%.6g");
-
-  series->attachAxis(axis_x);
-  series->attachAxis(axis_y);
-
-  QChartView *chartView = new QChartView(chart);
-  chartView->setRenderHint(QPainter::Antialiasing);
-
-  graph_window->setCentralWidget(chartView);
-  graph_window->show();
-}
-
-QSplineSeries *MainWindow::GetSeries(QString data, int max_x, int min_x) {
-  QSplineSeries *series = new QSplineSeries();
-
-  int step = GetStep(max_x, min_x);
-
-  if ((data.indexOf("sin") != -1 || data.indexOf("cos") != -1) &&
-      (step >= 10 || max_x - min_x == 2000)) {
-    step *= 10;
-  }
-
-  for (double i = min_x; i <= max_x; i += step) {
-    series->append(i, Get_Result(data, i));
-
-    if (step > 1) {
-      if (i + step == 0) {
-        series->append(-1, Get_Result(data, -1));
-      }
-
-      if (i == 0) {
-        series->append(1, Get_Result(data, 1));
-      }
-    }
-  }
-
-  return series;
-}
-
 void MainWindow::GetNewX(double x) {
-  QString data = ui->result_window->text();
-  double res = Get_Result(data, x);
-  ui->result_window->setText(QString::number(res, 'f', 7));
+  QString data = ui->result_window->text().replace('x', "(" + QString::number(x) + ")");
+  bool status;
+  double result = GetResult(data, &status);
+  ui->result_window->setText(QString::number(result, 'f', 7));
 }
 
-double MainWindow::Get_Result(QString data, double i) {
-  QString tmp = data;
-  std::string str_without_x = tmp.replace('x', "(" + QString::number(i) + ")").toUtf8().constData();
-
-  s21::Calculations calc;
+double MainWindow::GetYValue(double x) {
+  QString data = ui->result_window->text().replace('x', "(" + QString::number(x) + ")");
   bool status;
-
-  double result = calc.Calculate(str_without_x, &status);
+  double result = GetResult(data, &status);
   return result;
 }
 
-int MainWindow::GetStep(int max_x, int min_x) {
-  int step = 1;
-
-  if (max_x - min_x > 2000 && max_x - min_x <= 20000) {
-    step = 10;
-  } else if (max_x - min_x > 20000 && max_x - min_x <= 200000) {
-    step = 1000;
-  } else if (max_x - min_x > 200000) {
-    step = 10000;
-  }
-
-  return step;
-}
