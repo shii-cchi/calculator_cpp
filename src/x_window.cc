@@ -24,19 +24,21 @@ void XWindow::ClickApply() {
         qobject_cast<MainWindow *>(parent())->GetNewX(x);
 
         this->close();
-        SetDefault();
     } else {
         ui->label_err->setText("Ошибка ввода");
     }
 }
 
-
 void XWindow::ClickCancel() {
     this->close();
-    SetDefault();
 }
 
 void XWindow::SetDefault() {
     ui->label_err->setText("");
     ui->x->setText("");
+}
+
+void XWindow::showEvent(QShowEvent *event) {
+    SetDefault();
+    event->accept();
 }

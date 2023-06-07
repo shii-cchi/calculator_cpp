@@ -27,6 +27,7 @@ private:
     Ui::XWindow *ui;
 
     void SetDefault();
+    void showEvent(QShowEvent *event);
 };
 
 #endif // X_WINDOW_H

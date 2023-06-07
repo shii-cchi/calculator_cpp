@@ -11,7 +11,6 @@ CreditWindow::CreditWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::Cr
 CreditWindow::~CreditWindow() { delete ui; }
 
 void CreditWindow::ClickRunCount() {
-  Clear();
 
   s21::CreditCalculations credit;
 
@@ -47,15 +46,6 @@ void CreditWindow::ClickRunCount() {
   }
 }
 
-void CreditWindow::Clear() {
-  ui->payment_1->setText("");
-  ui->overpayment_1->setText("");
-  ui->total_sum_1->setText("");
-  ui->payment_2->setText("");
-  ui->overpayment_2->setText("");
-  ui->total_sum_2->setText("");
-}
-
 QString CreditWindow::GetCreditType() {
   QString credit_type;
 
@@ -76,4 +66,28 @@ bool CreditWindow::isEmptyFields() {
     status = false;
   }
   return status;
+}
+
+void CreditWindow::SetDefault() {
+  ui->credit_type_1->setAutoExclusive(false);
+  ui->credit_type_1->setChecked(false);
+  ui->credit_type_1->setAutoExclusive(true);
+
+  ui->credit_type_2->setAutoExclusive(false);
+  ui->credit_type_2->setChecked(false);
+  ui->credit_type_2->setAutoExclusive(true);
+
+  ui->credit_sum->setText("");
+  ui->credit_term->setText("");
+  ui->credit_percent->setText("");
+  ui->payment_1->setText("");
+  ui->overpayment_1->setText("");
+  ui->total_sum_1->setText("");
+  ui->payment_2->setText("");
+  ui->overpayment_2->setText("");
+  ui->total_sum_2->setText("");
+}
+
+void CreditWindow::showEvent(QShowEvent *event) {
+  SetDefault();
 }

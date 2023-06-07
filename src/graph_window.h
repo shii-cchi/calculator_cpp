@@ -28,6 +28,7 @@ class GraphWindow : public QMainWindow {
  private:
   Ui::GraphWindow *ui;
   void SetDefault();
+  void showEvent(QShowEvent *event);
 };
 
 #endif  // SRC_GRAPH_WINDOW_H

@@ -22,9 +22,10 @@ class CreditWindow : public QMainWindow {
  private:
   Ui::CreditWindow *ui;
 
-  void Clear();
   QString GetCreditType();
   bool isEmptyFields();
+  void SetDefault();
+  void showEvent(QShowEvent *event);
 };
 
 #endif  // SRC_CREDIT_WINDOW_H
