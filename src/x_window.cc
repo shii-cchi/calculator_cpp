@@ -21,7 +21,8 @@ void XWindow::ClickApply() {
     int x = ui->x->text().toInt(&x_1, 10);
 
     if (x_1 && x <= MAX_XY && x >= -MAX_XY) {
-        qobject_cast<MainWindow *>(parent())->GetNewX(x);
+        double result = qobject_cast<MainWindow *>(parent())->GetValue(x);
+        qobject_cast<MainWindow *>(parent())->SetResult(result);
 
         this->close();
     } else {

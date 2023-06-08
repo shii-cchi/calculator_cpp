@@ -26,8 +26,8 @@ class MainWindow : public QMainWindow {
   MainWindow(QWidget *parent = nullptr);
   ~MainWindow();
 
-  void GetNewX(double x);
-  double GetYValue(double x);
+  double GetValue(double x);
+  void SetResult(double result);
 
  private:
   Ui::MainWindow *ui;

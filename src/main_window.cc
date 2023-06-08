@@ -91,31 +91,31 @@ void MainWindow::ClickDeleteAll() {
 }
 
 void MainWindow::ClickDeleteSymbol() {
-  QString window = ui->result_window->text();
-  if (window == "Ошибка ввода") {
-    window = "0";
+  QString new_window = ui->result_window->text();
+
+  if (new_window == "Ошибка ввода" || new_window.length() ==  1) {
+    new_window = "0";
   }
-  if (window.length() ==  1) {
-    window = "0";
-  } else {
+
+  if (new_window.length() >  1) {
     char last_symbol;
+    QString symbols = "(x-.^ ";
 
     do {
-      window = window.chopped(1);
-      last_symbol = window[window.length() - 1].toLatin1();
-    } while (last_symbol != '(' && last_symbol != ' ' && last_symbol != 'x' && last_symbol != '-' &&
-             window.length() > 1 && last_symbol != '.' && last_symbol != '^' && !isdigit(last_symbol));
+      new_window = new_window.chopped(1);
+      last_symbol = new_window[new_window.length() - 1].toLatin1();
+    } while (new_window.length() > 1 && !isdigit(last_symbol) && symbols.indexOf(last_symbol) == -1);
 
-    if (last_symbol == ' ' && (isdigit(window[window.length() - 2].toLatin1()) || window[window.length() - 2].toLatin1() == 'x')) {
-      window = window.chopped(1);
+    if (last_symbol == ' ' && (isdigit(new_window[new_window.length() - 2].toLatin1()) || new_window[new_window.length() - 2].toLatin1() == 'x')) {
+      new_window = new_window.chopped(1);
+    }
+
+    if (new_window.length() == 1 && !isdigit(new_window.back().toLatin1()) && new_window.back().toLatin1() != '-' && new_window.back().toLatin1() != 'x') {
+      new_window = "0";
     }
   }
 
-  if (window.length() == 1 && !isdigit(window[window.length() - 1].toLatin1()) && window[window.length() - 1].toLatin1() != '-' && window[window.length() - 1].toLatin1() != 'x') {
-    window = "0";
-  }
-
-  ui->result_window->setText(window);
+  ui->result_window->setText(new_window);
 }
 
 void MainWindow::ClickEqual() {
@@ -128,7 +128,7 @@ void MainWindow::ClickEqual() {
  
   if (status) {
     if (ui->result_window->text().indexOf('x') == -1) {
-      ui->result_window->setText(QString::number(result, 'f', 7));
+      SetResult(result);
     } else {
       x_window->show();
     }
@@ -177,17 +177,13 @@ double MainWindow::GetResult(QString data, bool *status) {
   return result;
 }
 
-void MainWindow::GetNewX(double x) {
-  QString data = ui->result_window->text().replace('x', "(" + QString::number(x) + ")");
-  bool status;
-  double result = GetResult(data, &status);
-  ui->result_window->setText(QString::number(result, 'f', 7));
-}
-
-double MainWindow::GetYValue(double x) {
+double MainWindow::GetValue(double x) {
   QString data = ui->result_window->text().replace('x', "(" + QString::number(x) + ")");
   bool status;
   double result = GetResult(data, &status);
   return result;
 }
 
+void MainWindow::SetResult(double result) {
+  ui->result_window->setText(QString::number(result, 'f', 7));
+}
