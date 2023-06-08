@@ -7,7 +7,7 @@
 #include "main_window.h"
 
 #define MAX_XY 1000000
-#define DOTS 10000
+#define DOTS 100000
 
 class MainWindow;
 

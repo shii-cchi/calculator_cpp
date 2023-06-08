@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>781</width>
-    <height>589</height>
+    <height>667</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -27,7 +27,7 @@
    <widget class="QLabel" name="label_x">
     <property name="geometry">
      <rect>
-      <x>120</x>
+      <x>210</x>
       <y>490</y>
       <width>31</width>
       <height>20</height>
@@ -46,8 +46,8 @@
    <widget class="QPushButton" name="pushButton_build">
     <property name="geometry">
      <rect>
-      <x>520</x>
-      <y>485</y>
+      <x>610</x>
+      <y>535</y>
       <width>101</width>
       <height>31</height>
      </rect>
@@ -64,7 +64,7 @@
    <widget class="QWidget" name="gridLayoutWidget">
     <property name="geometry">
      <rect>
-      <x>150</x>
+      <x>240</x>
       <y>470</y>
       <width>351</width>
       <height>61</height>
@@ -99,7 +99,7 @@
       </widget>
      </item>
      <item row="0" column="2">
-      <widget class="QLabel" name="label_max">
+      <widget class="QLabel" name="label_max_x">
        <property name="font">
         <font>
          <pointsize>12</pointsize>
@@ -116,8 +116,8 @@
    <widget class="QLabel" name="label_err">
     <property name="geometry">
      <rect>
-      <x>280</x>
-      <y>540</y>
+      <x>360</x>
+      <y>600</y>
       <width>231</width>
       <height>21</height>
      </rect>
@@ -130,6 +130,77 @@
     </property>
     <property name="text">
      <string/>
+    </property>
+   </widget>
+   <widget class="QWidget" name="gridLayoutWidget_2">
+    <property name="geometry">
+     <rect>
+      <x>240</x>
+      <y>520</y>
+      <width>351</width>
+      <height>61</height>
+     </rect>
+    </property>
+    <layout class="QGridLayout" name="gridLayout_2">
+     <item row="0" column="3">
+      <widget class="QLineEdit" name="max_y">
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
+     </item>
+     <item row="0" column="0">
+      <widget class="QLabel" name="label_min_y">
+       <property name="font">
+        <font>
+         <pointsize>12</pointsize>
+         <bold>true</bold>
+        </font>
+       </property>
+       <property name="text">
+        <string>min</string>
+       </property>
+      </widget>
+     </item>
+     <item row="0" column="1">
+      <widget class="QLineEdit" name="min_y">
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
+     </item>
+     <item row="0" column="2">
+      <widget class="QLabel" name="label_max_y">
+       <property name="font">
+        <font>
+         <pointsize>12</pointsize>
+         <bold>true</bold>
+        </font>
+       </property>
+       <property name="text">
+        <string>max</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </widget>
+   <widget class="QLabel" name="label_y">
+    <property name="geometry">
+     <rect>
+      <x>210</x>
+      <y>540</y>
+      <width>31</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>12</pointsize>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="text">
+     <string>y</string>
     </property>
    </widget>
   </widget>

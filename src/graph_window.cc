@@ -32,19 +32,41 @@ void GraphWindow::ClickBuild() {
 
       ui->plot->xAxis->setRange(min_x, max_x);
 
-      double min_y = y[0], max_y = y[0];
-      for (int i = 1; i < DOTS; i++) {
-          if (y[i] < min_y) {
-            min_y = y[i];
-          }
-          
-          if (y[i] > max_y) {
-            max_y = y[i];
-          }
-      }
-      ui->plot->yAxis->setRange(min_y, max_y);
+      if (ui->min_y->text().isEmpty() && ui->max_y->text().isEmpty()) {
+        double min_y = y[0], max_y = y[0];
+        for (int i = 1; i < DOTS; i++) {
+            if (y[i] < min_y) {
+                min_y = y[i];
+            }
 
-      ui->plot->replot();
+            if (y[i] > max_y) {
+                max_y = y[i];
+            }
+        }
+
+        if (min_y < -MAX_XY) {
+            min_y = -MAX_XY;
+        }
+
+        if (max_y > MAX_XY) {
+            max_y = MAX_XY;
+        }
+
+        ui->plot->yAxis->setRange(min_y, max_y);
+        ui->plot->replot();
+      } else {
+        bool y_1, y_2;
+        double max_y = ui->max_y->text().toDouble(&y_1);
+        double min_y = ui->min_y->text().toDouble(&y_2);
+
+        if (y_1 && y_2 && max_y > min_y && max_y <= MAX_XY && min_y >= -MAX_XY) {
+            ui->plot->yAxis->setRange(min_y, max_y);
+
+            ui->plot->replot();
+        } else {
+            ui->label_err->setText("Ошибка ввода");
+        }
+      }
   } else {
       ui->label_err->setText("Ошибка ввода");
   }
@@ -57,11 +79,15 @@ void GraphWindow::SetDefault() {
   ui->plot->xAxis->setRange(-1000, 1000);
   ui->plot->yAxis->setRange(-1000, 1000);
   ui->plot->axisRect()->setMinimumMargins(QMargins(30,30,30,30));
+  ui->plot->setInteraction(QCP::iRangeZoom, true);
+  ui->plot->setInteraction(QCP::iRangeDrag, true);
   ui->plot->replot();
 
   ui->label_err->setText("");
   ui->max_x->setText("1000");
   ui->min_x->setText("-1000");
+  ui->max_y->setText("");
+  ui->min_y->setText("");
 }
 
 void GraphWindow::showEvent(QShowEvent *event) {
