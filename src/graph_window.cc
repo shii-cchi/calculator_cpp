@@ -65,10 +65,14 @@ void GraphWindow::ClickBuild() {
             ui->plot->replot();
         } else {
             ui->label_err->setText("Ошибка ввода");
+            ui->plot->clearGraphs();
+            ui->plot->replot();
         }
       }
   } else {
       ui->label_err->setText("Ошибка ввода");
+      ui->plot->clearGraphs();
+      ui->plot->replot();
   }
 }
 

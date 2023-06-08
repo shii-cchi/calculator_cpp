@@ -103,7 +103,7 @@ void MainWindow::ClickDeleteSymbol() {
     do {
       window = window.chopped(1);
       last_symbol = window[window.length() - 1].toLatin1();
-    } while (last_symbol != '(' && last_symbol != ' ' &&
+    } while (last_symbol != '(' && last_symbol != ' ' && last_symbol != 'x' && last_symbol != '-' &&
              window.length() > 1 && last_symbol != '.' && last_symbol != '^' && !isdigit(last_symbol));
 
     if (last_symbol == ' ' && (isdigit(window[window.length() - 2].toLatin1()) || window[window.length() - 2].toLatin1() == 'x')) {
