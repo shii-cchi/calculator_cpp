@@ -29,7 +29,7 @@ class GraphWindow : public QMainWindow {
   Ui::GraphWindow *ui;
   void SetDefault();
   void SetError();
-  void GetRangeY(QVector<double> y, double *min_y, double *max_y)
+  void GetRangeY(QVector<double> y, double *min_y, double *max_y);
   void showEvent(QShowEvent *event);
 };
 

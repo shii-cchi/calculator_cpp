@@ -17,6 +17,20 @@ OBJECTS_2 = test.o
 .PHONY: all
 all: clean
 
+.PHONY: install
+install:: clean
+	mkdir calculator
+	cd calculator; cmake ../
+	cd calculator; make
+	cd ..
+	mv calculator/Calculator .
+	rm -R calculator
+	./Calculator
+
+.PHONY: uninstall
+uninstall::
+	-rm -rf Calculator
+
 calc.a: clean
 	$(CC) $(CFLAGS) -c $(SOURCES_1)
 	ar rc calc.a $(OBJECTS_1)

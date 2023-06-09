@@ -10,22 +10,23 @@ set(CMAKE_AUTORCC ON)
 set(CMAKE_AUTOUIC ON)
 
 find_package(Qt6 COMPONENTS Widgets REQUIRED)
+find_package(Qt6 COMPONENTS PrintSupport REQUIRED)
 
 add_executable(Calculator
     logic/calculations.cc
     logic/credit_calculations.cc
     logic/parser.cc
     logic/validation.cc
-    qcustomplot/qcustomplot.cc
+    qcustomplot/qcustomplot.cpp
     view/credit_window.cc
     view/graph_window.cc
     view/main_window.cc
     view/main.cc
     view/x_window.cc
-    ui/credit_window.ui
-    ui/graph_window.ui
-    ui/main_window.ui
-    ui/x_window.ui
+    view/credit_window.ui
+    view/graph_window.ui
+    view/main_window.ui
+    view/x_window.ui
     logic/calculations.h
     logic/credit_calculations.h
     logic/parser.h
@@ -39,3 +40,4 @@ add_executable(Calculator
 )
 
 target_link_libraries(Calculator Qt6::Widgets Qt6::Core)
+target_link_libraries(Calculator Qt6::PrintSupport Qt6::Core)
