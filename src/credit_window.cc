@@ -40,10 +40,10 @@ void CreditWindow::ClickRunCount() {
       ui->overpayment_2->setText(QString::number(overpayment, 'f', 0));
       ui->total_sum_2->setText(QString::number(total_sum, 'f', 0));
     } else {
-      ui->payment_1->setText(ERROR_MESSAGE_1);
+      ui->payment_1->setText(ERROR_MESSAGE_2);
     }
   } else {
-    ui->payment_1->setText(ERROR_MESSAGE_2);
+    ui->payment_1->setText(ERROR_MESSAGE_3);
   }
 }
 

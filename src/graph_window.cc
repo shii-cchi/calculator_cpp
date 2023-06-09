@@ -20,10 +20,11 @@ void GraphWindow::ClickBuild() {
   double min_x = ui->min_x->text().toDouble(&x_2);
 
   if (x_1 && x_2 && max_x > min_x && max_x <= MAX_XY && min_x >= -MAX_XY) {
+    double max_y, min_y;
     if (!ui->min_y->text().isEmpty() && !ui->max_y->text().isEmpty()) {
       bool y_1, y_2;
-      double max_y = ui->max_y->text().toDouble(&y_1);
-      double min_y = ui->min_y->text().toDouble(&y_2);
+      max_y = ui->max_y->text().toDouble(&y_1);
+      min_y = ui->min_y->text().toDouble(&y_2);
 
       if (!(y_1 && y_2 && max_y > min_y && max_y <= MAX_XY &&
             min_y >= -MAX_XY)) {
@@ -83,8 +84,8 @@ void GraphWindow::SetError() {
   ui->plot->replot();
 }
 
-void GraphWindow::GetRangeY(vector<double> y, double *min_y, double *max_y) {
-  double *min_y = y[0], *max_y = y[0];
+void GraphWindow::GetRangeY(QVector<double> y, double *min_y, double *max_y) {
+  *min_y = y[0], *max_y = y[0];
   for (int i = 1; i < DOTS; i++) {
     if (y[i] < *min_y) {
       *min_y = y[i];

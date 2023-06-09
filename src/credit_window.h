@@ -5,8 +5,8 @@
 
 #include "credit_calculations.h"
 
-#define ERROR_MESSAGE_1 "Неверные данные"
-#define ERROR_MESSAGE_2 "Все поля должны быть заполнены"
+#define ERROR_MESSAGE_2 "Неверные данные"
+#define ERROR_MESSAGE_3 "Все поля должны быть заполнены"
 
 namespace Ui {
 class CreditWindow;

@@ -14,7 +14,6 @@ class XWindow;
 #define MAX_XY 1000000
 #define START_MESSAGE "0"
 #define ERROR_MESSAGE_1 "Ошибка ввода"
-#define ERROR_MESSAGE_2 "Неверные данные"
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
