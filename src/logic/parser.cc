@@ -1,6 +1,6 @@
-#include "calculations.h"
+#include "parser.h"
 
-void s21::Calculations::ToReversePolish(std::string &str_input,
+void s21::Parser::ToReversePolish(std::string &str_input,
                                         lexeme *reverse_polish) {
   std::stack<lexeme> queue;
   lexeme lex;
@@ -52,7 +52,7 @@ void s21::Calculations::ToReversePolish(std::string &str_input,
   }
 }
 
-int s21::Calculations::DefineLexeme(std::string &str_input, lexeme *lex,
+int s21::Parser::DefineLexeme(std::string &str_input, lexeme *lex,
                                     int index_input) {
   ClearLexeme(lex);
   char lex_kind = 0;
@@ -84,7 +84,7 @@ int s21::Calculations::DefineLexeme(std::string &str_input, lexeme *lex,
   return index_input;
 }
 
-char s21::Calculations::IsNum(std::string &str_input, int *index_input,
+char s21::Parser::IsNum(std::string &str_input, int *index_input,
                               double *number) {
   char status = 0;
   int count_symbol = 0;
@@ -108,7 +108,7 @@ char s21::Calculations::IsNum(std::string &str_input, int *index_input,
   return status;
 }
 
-char s21::Calculations::IsOperator(std::string &str_input, int *index_input) {
+char s21::Parser::IsOperator(std::string &str_input, int *index_input) {
   char status = 0;
 
   std::string operators = "+-*/^";
@@ -122,7 +122,7 @@ char s21::Calculations::IsOperator(std::string &str_input, int *index_input) {
   return status;
 }
 
-char s21::Calculations::IsFunction(std::string &str_input, int *index_input) {
+char s21::Parser::IsFunction(std::string &str_input, int *index_input) {
   char status = 0;
 
   std::string new_str = GetSubstr(str_input, *index_input);
@@ -143,7 +143,7 @@ char s21::Calculations::IsFunction(std::string &str_input, int *index_input) {
   return status;
 }
 
-char s21::Calculations::IsBracket(std::string &str_input, int *index_input) {
+char s21::Parser::IsBracket(std::string &str_input, int *index_input) {
   char status = 0;
 
   if (str_input[*index_input] == '(' || str_input[*index_input] == ')') {
@@ -153,7 +153,7 @@ char s21::Calculations::IsBracket(std::string &str_input, int *index_input) {
   return status;
 }
 
-int s21::Calculations::GetPriority(lexeme lex) {
+int s21::Parser::GetPriority(lexeme lex) {
   int prior = 0;
   std::string lexeme_prior_3 = "*/msctlSCTQL";
 
@@ -171,7 +171,7 @@ int s21::Calculations::GetPriority(lexeme lex) {
   return prior;
 }
 
-std::string s21::Calculations::GetSubstr(std::string &str_input,
+std::string s21::Parser::GetSubstr(std::string &str_input,
                                          int index_input) {
   std::string new_str;
 
@@ -188,7 +188,7 @@ std::string s21::Calculations::GetSubstr(std::string &str_input,
   return new_str;
 }
 
-void s21::Calculations::ClearLexeme(lexeme *lex) {
+void s21::Parser::ClearLexeme(lexeme *lex) {
   lex->type = UNDEFINED;
   lex->lexeme_kind = 0;
   lex->number = 0;

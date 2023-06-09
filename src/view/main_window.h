@@ -3,7 +3,7 @@
 
 #include <QMainWindow>
 
-#include "calculations.h"
+#include "../logic/calculations.h"
 #include "credit_window.h"
 #include "graph_window.h"
 #include "x_window.h"

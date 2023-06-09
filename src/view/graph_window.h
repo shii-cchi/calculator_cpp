@@ -4,7 +4,7 @@
 #include <QMainWindow>
 
 #include "main_window.h"
-#include "qcustomplot.h"
+#include "../qcustomplot/qcustomplot.h"
 
 #define MAX_XY 1000000
 #define DOTS 100000
@@ -29,7 +29,7 @@ class GraphWindow : public QMainWindow {
   Ui::GraphWindow *ui;
   void SetDefault();
   void SetError();
-  void GetRangeY(QVector<double> y, double *min_y, double *max_y);
+  void GetRangeY(QVector<double> y, double *min_y, double *max_y)
   void showEvent(QShowEvent *event);
 };
 

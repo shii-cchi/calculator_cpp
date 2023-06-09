@@ -1,6 +1,6 @@
-#include "calculations.h"
+#include "validation.h"
 
-bool s21::Calculations::IsValidInputStr(std::string &str_input) {
+bool s21::Validation::IsValidInputStr(std::string &str_input) {
   bool status = true;
 
   if (!CheckDot(str_input) || !CheckX(str_input) || !CheckNumbers(str_input) ||
@@ -11,7 +11,7 @@ bool s21::Calculations::IsValidInputStr(std::string &str_input) {
   return status;
 }
 
-bool s21::Calculations::CheckDot(std::string &str_input) {
+bool s21::Validation::CheckDot(std::string &str_input) {
   bool status = true;
   int count_dot = 0;
 
@@ -43,7 +43,7 @@ bool s21::Calculations::CheckDot(std::string &str_input) {
   return status;
 }
 
-bool s21::Calculations::CheckX(std::string &str_input) {
+bool s21::Validation::CheckX(std::string &str_input) {
   bool status = true;
   int count_x = 0;
 
@@ -65,7 +65,7 @@ bool s21::Calculations::CheckX(std::string &str_input) {
   return status;
 }
 
-bool s21::Calculations::CheckNumbers(std::string &str_input) {
+bool s21::Validation::CheckNumbers(std::string &str_input) {
   int status = true;
   int digit = 0;
 
@@ -82,7 +82,7 @@ bool s21::Calculations::CheckNumbers(std::string &str_input) {
   return status;
 }
 
-bool s21::Calculations::CheckBrackets(std::string &str_input) {
+bool s21::Validation::CheckBrackets(std::string &str_input) {
   int status = true;
   int brackets = 0;
 
@@ -108,7 +108,7 @@ bool s21::Calculations::CheckBrackets(std::string &str_input) {
   return status;
 }
 
-bool s21::Calculations::IsValidReversePolish(lexeme *reverse_polish) {
+bool s21::Validation::IsValidReversePolish(lexeme *reverse_polish) {
   int status = true;
   int index = 0, operators = 0, numbers = 0;
 
