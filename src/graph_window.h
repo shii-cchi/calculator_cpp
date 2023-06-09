@@ -3,8 +3,8 @@
 
 #include <QMainWindow>
 
-#include "qcustomplot.h"
 #include "main_window.h"
+#include "qcustomplot.h"
 
 #define MAX_XY 1000000
 #define DOTS 100000

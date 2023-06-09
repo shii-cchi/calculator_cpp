@@ -5,6 +5,9 @@
 
 #include "credit_calculations.h"
 
+#define ERROR_MESSAGE_1 "Неверные данные"
+#define ERROR_MESSAGE_2 "Все поля должны быть заполнены"
+
 namespace Ui {
 class CreditWindow;
 }
@@ -23,7 +26,7 @@ class CreditWindow : public QMainWindow {
   Ui::CreditWindow *ui;
 
   QString GetCreditType();
-  bool isEmptyFields();
+  bool IsEmptyFields();
   void SetDefault();
   void showEvent(QShowEvent *event);
 };

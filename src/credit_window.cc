@@ -1,7 +1,9 @@
 #include "credit_window.h"
+
 #include "ui_credit_window.h"
 
-CreditWindow::CreditWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::CreditWindow) {
+CreditWindow::CreditWindow(QWidget *parent)
+    : QMainWindow(parent), ui(new Ui::CreditWindow) {
   ui->setupUi(this);
   this->setWindowTitle("Кредитный калькулятор");
 
@@ -11,10 +13,9 @@ CreditWindow::CreditWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::Cr
 CreditWindow::~CreditWindow() { delete ui; }
 
 void CreditWindow::ClickRunCount() {
-
   s21::CreditCalculations credit;
 
-  if (!isEmptyFields()) {
+  if (!IsEmptyFields()) {
     QString credit_type = GetCreditType();
 
     QString credit_data = ui->credit_sum->text() + " " +
@@ -25,7 +26,7 @@ void CreditWindow::ClickRunCount() {
 
     double max_payment = 0, min_payment = 0, overpayment = 0, total_sum = 0;
     if (credit.CreditCalculate(credit_data_str, &max_payment, &min_payment,
-                         &overpayment, &total_sum)) {
+                               &overpayment, &total_sum)) {
       if (credit_type == "a") {
         ui->payment_2->setText(QString::number(max_payment, 'f', 0));
       } else {
@@ -39,10 +40,10 @@ void CreditWindow::ClickRunCount() {
       ui->overpayment_2->setText(QString::number(overpayment, 'f', 0));
       ui->total_sum_2->setText(QString::number(total_sum, 'f', 0));
     } else {
-      ui->payment_1->setText("Неверные данные");
+      ui->payment_1->setText(ERROR_MESSAGE_1);
     }
   } else {
-    ui->payment_1->setText("Все поля должны быть заполнены");
+    ui->payment_1->setText(ERROR_MESSAGE_2);
   }
 }
 
@@ -58,7 +59,7 @@ QString CreditWindow::GetCreditType() {
   return credit_type;
 }
 
-bool CreditWindow::isEmptyFields() {
+bool CreditWindow::IsEmptyFields() {
   bool status = true;
   if (!ui->credit_sum->text().isEmpty() && !ui->credit_term->text().isEmpty() &&
       !ui->credit_percent->text().isEmpty() &&
@@ -88,6 +89,4 @@ void CreditWindow::SetDefault() {
   ui->total_sum_2->setText("");
 }
 
-void CreditWindow::showEvent(QShowEvent *event) {
-  SetDefault();
-}
+void CreditWindow::showEvent(QShowEvent *event) { SetDefault(); }

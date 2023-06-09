@@ -48,7 +48,8 @@ clean:
 	
 .PHONY: style
 style:
-	clang-format -n -style=Google calculations/*.c test/*.c qt/*.cpp headers/*.h
+	clang-format -n -style=Google *.cc *.h
+	
 
 .PHONY: valgrind
 valgrind:
