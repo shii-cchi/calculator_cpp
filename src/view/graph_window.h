@@ -1,5 +1,5 @@
-#ifndef SRC_GRAPH_WINDOW_H
-#define SRC_GRAPH_WINDOW_H
+#ifndef SRC_VIEW_GRAPH_WINDOW_H
+#define SRC_VIEW_GRAPH_WINDOW_H
 
 #include <QMainWindow>
 
@@ -33,4 +33,4 @@ class GraphWindow : public QMainWindow {
   void showEvent(QShowEvent *event);
 };
 
-#endif  // SRC_GRAPH_WINDOW_H
+#endif  // SRC_VIEW_GRAPH_WINDOW_H

@@ -1,5 +1,5 @@
-#ifndef SRC_VALIDATION_H_
-#define SRC_VALIDATION_H_
+#ifndef SRC_LOGIC_VALIDATION_H_
+#define SRC_LOGIC_VALIDATION_H_
 
 #include <string>
 #include "lexeme.h"
@@ -19,4 +19,4 @@ class Validation {
 };
 }  // namespace s21
 
-#endif  // SRC_VALIDATION_H_
+#endif  // SRC_LOGIC_VALIDATION_H_

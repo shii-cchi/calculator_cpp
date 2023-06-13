@@ -1,5 +1,5 @@
-#ifndef SRC_LEXEME_H_
-#define SRC_LEXEME_H_
+#ifndef SRC_LOGIC_LEXEME_H_
+#define SRC_LOGIC_LEXEME_H_
 
 namespace s21 {
   enum lexeme_type { NUMBER, OPERATOR, FUNCTION, BRACKET, UNDEFINED };
@@ -13,4 +13,4 @@ namespace s21 {
   } lexeme;
 }
 
-#endif  // SRC_LEXEME_H_
+#endif  // SRC_LOGIC_LEXEME_H_

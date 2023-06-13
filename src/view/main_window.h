@@ -1,5 +1,5 @@
-#ifndef SRC_MAIN_WINDOW_H
-#define SRC_MAIN_WINDOW_H
+#ifndef SRC_VIEW_MAIN_WINDOW_H
+#define SRC_VIEW_MAIN_WINDOW_H
 
 #include <QMainWindow>
 
@@ -55,4 +55,4 @@ class MainWindow : public QMainWindow {
   void ClickCredit();
 };
 
-#endif  // SRC_MAIN_WINDOW_H
+#endif  // SRC_VIEW_MAIN_WINDOW_H

@@ -1,5 +1,5 @@
-#ifndef SRC_CALCULATIONS_H_
-#define SRC_CALCULATIONS_H_
+#ifndef SRC_LOGIC_CALCULATIONS_H_
+#define SRC_LOGIC_CALCULATIONS_H_
 
 #include <cmath>
 
@@ -28,4 +28,4 @@ class Calculations {
 };
 }  // namespace s21
 
-#endif  // SRC_CALCULATIONS_H_
+#endif  // SRC_LOGIC_CALCULATIONS_H_

@@ -1,5 +1,5 @@
-#ifndef SRC_PARSER_H_
-#define SRC_PARSER_H_
+#ifndef SRC_LOGIC_PARSER_H_
+#define SRC_LOGIC_PARSER_H_
 
 #include <sstream>
 #include <stack>
@@ -24,4 +24,4 @@ class Parser {
 };
 }  // namespace s21
 
-#endif  // SRC_PARSER_H_
+#endif  // SRC_LOGIC_PARSER_H_
