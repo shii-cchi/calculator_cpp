@@ -5,7 +5,7 @@ s21::Calculations::Calculations() {
   validation = new Validation();
 }
 
-double s21::Calculations::Calculate(std::string &str_input, bool *status) {
+double s21::Calculations::Calculate(std::string &str_input, bool status) {
   double result = 0;
   lexeme reverse_polish[LEN];
   for (int i = 0; i < LEN; i++) {
@@ -17,7 +17,7 @@ double s21::Calculations::Calculate(std::string &str_input, bool *status) {
 
     if (validation->IsValidReversePolish(reverse_polish)) {
       result = CalculateReversePolish(reverse_polish);
-      *status = true;
+      status = true;
     }
   }
 

@@ -10,9 +10,9 @@ namespace s21 {
 
 class CreditCalculations {
  public:
-  bool CreditCalculate(std::string &credit_data, double *max_payment,
-                       double *min_payment, double *overpayment,
-                       double *total_sum);
+  bool CreditCalculate(std::string &credit_data, double max_payment,
+                       double min_payment, double overpayment,
+                       double total_sum);
 
  private:
   typedef struct credit_data {

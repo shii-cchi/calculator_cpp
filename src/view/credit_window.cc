@@ -13,7 +13,7 @@ CreditWindow::CreditWindow(QWidget *parent)
 CreditWindow::~CreditWindow() { delete ui; }
 
 void CreditWindow::ClickRunCount() {
-  s21::CreditCalculations credit;
+  s21::Controller credit;
 
   if (!IsEmptyFields()) {
     QString credit_type = GetCreditType();

@@ -192,7 +192,7 @@ double MainWindow::GetResult(QString data, bool *status) {
   bool status_calc = false;
   std::string str_x = data.toUtf8().constData();
 
-  s21::Calculations calc;
+  s21::Controller calc;
   double result = calc.Calculate(str_x, &status_calc);
   *status = status_calc;
   return result;

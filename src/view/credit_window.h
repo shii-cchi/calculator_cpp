@@ -3,7 +3,7 @@
 
 #include <QMainWindow>
 
-#include "../logic/credit_calculations.h"
+#include "../controller/controller.h"
 
 #define ERROR_MESSAGE_2 "Неверные данные"
 #define ERROR_MESSAGE_3 "Все поля должны быть заполнены"
