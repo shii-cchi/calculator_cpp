@@ -23,6 +23,7 @@ add_executable(Calculator
     view/main_window.cc
     view/main.cc
     view/x_window.cc
+    controller/controller.cc
     view/credit_window.ui
     view/graph_window.ui
     view/main_window.ui
@@ -37,6 +38,7 @@ add_executable(Calculator
     view/graph_window.h
     view/main_window.h
     view/x_window.h
+    controller/controller.h
 )
 
 target_link_libraries(Calculator Qt6::Widgets Qt6::Core)

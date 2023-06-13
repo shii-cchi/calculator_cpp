@@ -15,7 +15,7 @@ class Calculations {
  public:
   Calculations();
 
-  double Calculate(std::string &str_input, bool status);
+  double Calculate(std::string &str_input, bool *status);
 
  private:
   Parser *parser;
