@@ -9,7 +9,7 @@ ifeq ($(shell uname), Linux)
 	OPEN = xdg-open
 endif
 
-SOURCES_1 = calculations.cc parser.cc validation.cc credit_calculations.cc
+SOURCES_1 = logic/calculations.cc logic/parser.cc logic/validation.cc logic/credit_calculations.cc
 OBJECTS_1 = calculations.o parser.o validation.o credit_calculations.o
 SOURCES_2 = test/test.cc
 OBJECTS_2 = test.o
@@ -62,7 +62,7 @@ clean:
 	
 .PHONY: style
 style:
-	clang-format -n -style=Google *.cc *.h
+	clang-format -n -style=Google logic/*.cc logic/*.h controller/*.cc controller/*.h view/*.cc view/*.h test/*.cc
 	
 
 .PHONY: valgrind

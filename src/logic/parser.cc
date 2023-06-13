@@ -1,7 +1,7 @@
 #include "parser.h"
 
 void s21::Parser::ToReversePolish(std::string &str_input,
-                                        lexeme *reverse_polish) {
+                                  lexeme *reverse_polish) {
   std::stack<lexeme> queue;
   lexeme lex;
 
@@ -53,7 +53,7 @@ void s21::Parser::ToReversePolish(std::string &str_input,
 }
 
 int s21::Parser::DefineLexeme(std::string &str_input, lexeme *lex,
-                                    int index_input) {
+                              int index_input) {
   ClearLexeme(lex);
   char lex_kind = 0;
   double number = 0;
@@ -85,7 +85,7 @@ int s21::Parser::DefineLexeme(std::string &str_input, lexeme *lex,
 }
 
 char s21::Parser::IsNum(std::string &str_input, int *index_input,
-                              double *number) {
+                        double *number) {
   char status = 0;
   int count_symbol = 0;
   std::string new_str = GetSubstr(str_input, *index_input);
@@ -171,8 +171,7 @@ int s21::Parser::GetPriority(lexeme lex) {
   return prior;
 }
 
-std::string s21::Parser::GetSubstr(std::string &str_input,
-                                         int index_input) {
+std::string s21::Parser::GetSubstr(std::string &str_input, int index_input) {
   std::string new_str;
 
   for (int i = 0; i < (int)str_input.length() - index_input; i++) {

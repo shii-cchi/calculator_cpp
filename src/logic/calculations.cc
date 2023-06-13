@@ -1,21 +1,18 @@
 #include "calculations.h"
 
-s21::Calculations::Calculations() {
-  parser = new Parser();
-  validation = new Validation();
-}
-
 double s21::Calculations::Calculate(std::string &str_input, bool *status) {
   double result = 0;
+  s21::Parser parser;
+  s21::Validation validation;
   lexeme reverse_polish[LEN];
   for (int i = 0; i < LEN; i++) {
-    parser->ClearLexeme(&reverse_polish[i]);
+    parser.ClearLexeme(&reverse_polish[i]);
   }
 
-  if (validation->IsValidInputStr(str_input)) {
-    parser->ToReversePolish(str_input, reverse_polish);
+  if (validation.IsValidInputStr(str_input)) {
+    parser.ToReversePolish(str_input, reverse_polish);
 
-    if (validation->IsValidReversePolish(reverse_polish)) {
+    if (validation.IsValidReversePolish(reverse_polish)) {
       result = CalculateReversePolish(reverse_polish);
       *status = true;
     }

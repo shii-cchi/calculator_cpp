@@ -13,14 +13,9 @@ namespace s21 {
 
 class Calculations {
  public:
-  Calculations();
-
   double Calculate(std::string &str_input, bool *status);
 
  private:
-  Parser *parser;
-  Validation *validation;
-
   double CalculateReversePolish(lexeme *reverse_polish);
   double CalculateFunction(double number, char function);
   double CalculateUnaryOp(double number, char op);
