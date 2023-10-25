@@ -20,6 +20,9 @@ class Calculations {
   double CalculateFunction(double number, char function);
   double CalculateUnaryOp(double number, char op);
   double CalculateOp(double number_1, double number_2, char op);
+
+  s21::Parser *parser;
+  s21::Validation *validation;
 };
 }  // namespace s21
 
