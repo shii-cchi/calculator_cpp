@@ -1,5 +1,5 @@
-#ifndef SRC_LOGIC_PARSER_H_
-#define SRC_LOGIC_PARSER_H_
+#ifndef CPP3_SMARTCALC_LOGIC_PARSER_H_
+#define CPP3_SMARTCALC_LOGIC_PARSER_H_
 
 #include <sstream>
 #include <stack>
@@ -25,4 +25,4 @@ class Parser {
 };
 }  // namespace s21
 
-#endif  // SRC_LOGIC_PARSER_H_
+#endif  // CPP3_SMARTCALC_LOGIC_PARSER_H_

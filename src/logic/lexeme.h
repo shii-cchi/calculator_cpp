@@ -1,5 +1,5 @@
-#ifndef SRC_LOGIC_LEXEME_H_
-#define SRC_LOGIC_LEXEME_H_
+#ifndef CPP3_SMARTCALC_LOGIC_LEXEME_H_
+#define CPP3_SMARTCALC_LOGIC_LEXEME_H_
 
 namespace s21 {
 enum lexeme_type { NUMBER, OPERATOR, FUNCTION, BRACKET, UNDEFINED };
@@ -13,4 +13,4 @@ typedef struct lexemes {
 } lexeme;
 }  // namespace s21
 
-#endif  // SRC_LOGIC_LEXEME_H_
+#endif  // CPP3_SMARTCALC_LOGIC_LEXEME_H_

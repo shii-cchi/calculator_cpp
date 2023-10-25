@@ -1,5 +1,5 @@
-#ifndef SRC_LOGIC_CREDIT_CALCULATIONS_H_
-#define SRC_LOGIC_CREDIT_CALCULATIONS_H_
+#ifndef CPP3_SMARTCALC_LOGIC_CREDIT_CALCULATIONS_H_
+#define CPP3_SMARTCALC_LOGIC_CREDIT_CALCULATIONS_H_
 
 #include <cmath>
 #include <string>
@@ -31,4 +31,4 @@ class CreditCalculations {
 };
 }  // namespace s21
 
-#endif  // SRC_LOGIC_CREDIT_CALCULATIONS_H_
+#endif  // CPP3_SMARTCALC_LOGIC_CREDIT_CALCULATIONS_H_

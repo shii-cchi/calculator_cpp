@@ -1,5 +1,5 @@
-#ifndef SRC_LOGIC_CALCULATIONS_H_
-#define SRC_LOGIC_CALCULATIONS_H_
+#ifndef CPP3_SMARTCALC_LOGIC_CALCULATIONS_H_
+#define CPP3_SMARTCALC_LOGIC_CALCULATIONS_H_
 
 #include <cmath>
 
@@ -23,4 +23,4 @@ class Calculations {
 };
 }  // namespace s21
 
-#endif  // SRC_LOGIC_CALCULATIONS_H_
+#endif  // CPP3_SMARTCALC_LOGIC_CALCULATIONS_H_

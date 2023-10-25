@@ -1,5 +1,5 @@
-#ifndef SRC_CONTROLLER_CONTROLLER_H_
-#define SRC_CONTROLLER_CONTROLLER_H_
+#ifndef CPP3_SMARTCALC_CONTROLLER_CONTROLLER_H_
+#define CPP3_SMARTCALC_CONTROLLER_CONTROLLER_H_
 
 #include "../logic/calculations.h"
 #include "../logic/credit_calculations.h"
@@ -17,4 +17,4 @@ class Controller {
 };
 }  // namespace s21
 
-#endif  // SRC_CONTROLLER_CONTROLLER_H_
+#endif  // CPP3_SMARTCALC_CONTROLLER_CONTROLLER_H_

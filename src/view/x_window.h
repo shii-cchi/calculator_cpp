@@ -1,5 +1,5 @@
-#ifndef SRC_VIEW_X_WINDOW_H
-#define SRC_VIEW_X_WINDOW_H
+#ifndef CPP3_SMARTCALC_VIEW_X_WINDOW_H
+#define CPP3_SMARTCALC_VIEW_X_WINDOW_H
 
 #include <QDialog>
 
@@ -29,4 +29,4 @@ class XWindow : public QDialog {
   void showEvent(QShowEvent *event);
 };
 
-#endif  // SRC_VIEW_X_WINDOW_H
+#endif  // CPP3_SMARTCALC_VIEW_X_WINDOW_H
