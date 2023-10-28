@@ -23,8 +23,8 @@ void CreditWindow::ClickRunCount() {
     std::string credit_data_str = credit_data.toUtf8().constData();
 
     double max_payment = 0, min_payment = 0, overpayment = 0, total_sum = 0;
-    if (credit_calc->CreditCalculate(credit_data_str, &max_payment, &min_payment,
-                               &overpayment, &total_sum)) {
+    if (credit_calc->CreditCalculate(credit_data_str, &max_payment,
+                                     &min_payment, &overpayment, &total_sum)) {
       if (credit_type == "a") {
         ui->payment_2->setText(QString::number(max_payment, 'f', 0));
       } else {

@@ -2,10 +2,10 @@
 #define CPP3_SMARTCALC_LOGIC_CALCULATIONS_H_
 
 #include <cmath>
+#include <tuple>
 
 #include "parser.h"
 #include "validation.h"
-#include <tuple>
 
 #define LEN 255
 #define EPS 1e-8

@@ -14,8 +14,8 @@ class Controller {
                        double *total_sum);
 
  private:
-   s21::Calculations calc;
-   s21::CreditCalculations credit_calc;
+  s21::Calculations calc;
+  s21::CreditCalculations credit_calc;
 };
 }  // namespace s21
 
