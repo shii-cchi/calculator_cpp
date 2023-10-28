@@ -191,7 +191,7 @@ QString MainWindow::GetNewWindow(QString button_text, int flag) {
 double MainWindow::GetResult(QString data, bool *status) {
   std::string str_x = data.toUtf8().constData();
 
-  auto result = calc->Calculate(str_x);
+  auto result = controller->Calculate(str_x);
   double value = std::get<0>(result);
   *status = std::get<1>(result);
   return value;

@@ -40,6 +40,8 @@ class MainWindow : public QMainWindow {
   double GetResult(QString data, bool *status);
   QString GetNewWindow(QString button_text, int flag);
 
+  s21::Controller *controller;
+
  private slots:
   void ClickNumbersAndBrackets();
   void ClickPowAndDot();
@@ -53,8 +55,6 @@ class MainWindow : public QMainWindow {
   void ClickEqual();
   void ClickGraph();
   void ClickCredit();
-
-  s21::Controller *calc;
 };
 
 #endif  // CPP3_SMARTCALC_VIEW_MAIN_WINDOW_H
