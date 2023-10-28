@@ -29,6 +29,8 @@ class CreditWindow : public QMainWindow {
   bool IsEmptyFields();
   void SetDefault();
   void showEvent(QShowEvent *event);
+
+  s21::Controller *credit_calc;
 };
 
 #endif  // CPP3_SMARTCALC_VIEW_CREDIT_WINDOW_H

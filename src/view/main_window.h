@@ -53,6 +53,8 @@ class MainWindow : public QMainWindow {
   void ClickEqual();
   void ClickGraph();
   void ClickCredit();
+
+  s21::Controller *calc;
 };
 
 #endif  // CPP3_SMARTCALC_VIEW_MAIN_WINDOW_H
