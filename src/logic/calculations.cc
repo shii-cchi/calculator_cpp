@@ -5,13 +5,13 @@ std::tuple<double, bool> s21::Calculations::Calculate(std::string &str_input) {
   bool status = false;
   lexeme reverse_polish[LEN];
   for (int i = 0; i < LEN; i++) {
-    parser->ClearLexeme(&reverse_polish[i]);
+    parser.ClearLexeme(&reverse_polish[i]);
   }
 
-  if (validation->IsValidInputStr(str_input)) {
-    parser->ToReversePolish(str_input, reverse_polish);
+  if (validation.IsValidInputStr(str_input)) {
+    parser.ToReversePolish(str_input, reverse_polish);
 
-    if (validation->IsValidReversePolish(reverse_polish)) {
+    if (validation.IsValidReversePolish(reverse_polish)) {
       result = CalculateReversePolish(reverse_polish);
       status = true;
     }
