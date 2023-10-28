@@ -1,8 +1,8 @@
 #include "controller.h"
 
-double s21::Controller::Calculate(std::string &str_input, bool *status) {
+std::tuple<double, bool> s21::Controller::Calculate(std::string &str_input) {
   s21::Calculations calc;
-  return calc.Calculate(str_input, status);
+  return calc.Calculate(str_input);
 }
 
 bool s21::Controller::CreditCalculate(std::string &credit_data,

@@ -1,7 +1,8 @@
 #include "calculations.h"
 
-double s21::Calculations::Calculate(std::string &str_input, bool *status) {
+std::tuple<double, bool> s21::Calculations::Calculate(std::string &str_input) {
   double result = 0;
+  bool status = false;
   lexeme reverse_polish[LEN];
   for (int i = 0; i < LEN; i++) {
     parser->ClearLexeme(&reverse_polish[i]);
@@ -12,11 +13,11 @@ double s21::Calculations::Calculate(std::string &str_input, bool *status) {
 
     if (validation->IsValidReversePolish(reverse_polish)) {
       result = CalculateReversePolish(reverse_polish);
-      *status = true;
+      status = true;
     }
   }
 
-  return result;
+  return std::make_tuple(result, status);
 }
 
 double s21::Calculations::CalculateReversePolish(lexeme *reverse_polish) {

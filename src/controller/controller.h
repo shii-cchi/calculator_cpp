@@ -8,7 +8,7 @@ namespace s21 {
 
 class Controller {
  public:
-  double Calculate(std::string &str_input, bool *status);
+  std::tuple<double, bool> Calculate(std::string &str_input);
   bool CreditCalculate(std::string &credit_data, double *max_payment,
                        double *min_payment, double *overpayment,
                        double *total_sum);

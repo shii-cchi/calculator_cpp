@@ -5,6 +5,7 @@
 
 #include "parser.h"
 #include "validation.h"
+#include <tuple>
 
 #define LEN 255
 #define EPS 1e-8
@@ -13,7 +14,7 @@ namespace s21 {
 
 class Calculations {
  public:
-  double Calculate(std::string &str_input, bool *status);
+  std::tuple<double, bool> Calculate(std::string &str_input);
 
  private:
   double CalculateReversePolish(lexeme *reverse_polish);

@@ -192,8 +192,10 @@ double MainWindow::GetResult(QString data, bool *status) {
   std::string str_x = data.toUtf8().constData();
 
   s21::Controller calc;
-  double result = calc.Calculate(str_x, status);
-  return result;
+  auto result = calc.Calculate(str_x);
+  double value = std::get<0>(result);
+  *status = std::get<1>(result);
+  return value;
 }
 
 double MainWindow::GetValue(double x) {
